@@ -1,0 +1,42 @@
+name: Planomy Tax Data
+description: >-
+  A free, keyless open-data JSON API providing 2026 US retirement and tax figures — IRS contribution limits, income
+  phase-outs, federal brackets, Social Security wage base and COLA, Medicare premiums and IRMAA, and RMD start age —
+  sourced from IRS, SSA, and CMS. Served as a single static JSON file from the Planomy local-first personal-finance
+  planner.
+url: https://planomy-tax-data.apievangelist.com/apis.yml
+created: '2026-07-28'
+modified: '2026-07-28'
+specificationVersion: '0.21'
+tags:
+  - tax
+  - finance
+  - open-data
+  - retirement
+  - government
+apis:
+  - name: Planomy Tax Data JSON
+    description: >-
+      A free, no-auth static JSON endpoint providing 2026 US tax and retirement data. Server-side consumable (not
+      CORS-enabled). Includes a stable, additive field-level schema documented in prose.
+    humanURL: https://planomy.net/data/
+    baseURL: https://planomy.net
+    tags:
+      - tax
+      - finance
+      - open-data
+      - retirement
+      - government
+    properties:
+      - type: Documentation
+        url: https://planomy.net/data/
+      - type: LLMSTxt
+        url: https://planomy.net/llms.txt
+maintainers:
+  - FN: Planomy Tax Data
+    url: https://planomy.net/data/
+generated:
+  by: apis.io/add
+  model: claude-opus-4-8
+  confidence: 90
+  at: '2026-07-28T15:14:23.864Z'
