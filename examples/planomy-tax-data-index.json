@@ -1,0 +1,8 @@
+{
+  "latest": 2026,
+  "years": [2026],
+  "schema": "https://planomy.net/data/#schema",
+  "documentation": "https://planomy.net/data/",
+  "yearUrlTemplate": "https://planomy.net/tax-data/{year}.json",
+  "license": "Public-domain figures published by US federal agencies. Free to reuse; a link to https://planomy.net/data/ is appreciated."
+}

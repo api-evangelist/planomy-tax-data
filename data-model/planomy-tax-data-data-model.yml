@@ -1,0 +1,204 @@
+generated: '2026-08-09'
+method: derived
+source: >-
+  openapi/planomy-tax-data-openapi.yml and examples/planomy-tax-data-2026.json (live payload,
+  2026-08-09); prose reference at https://planomy.net/data/#schema
+description: >-
+  Entity graph of the Planomy tax dataset. There is no relational API here — one document per year —
+  so the interesting structure is internal: a document-level `sources` map that every section
+  references by key, which makes each individual figure traceable to a named IRS, SSA, CMS or Federal
+  Register publication.
+root: TaxYearDataset
+identity:
+  primary_key: year
+  addressing: https://planomy.net/tax-data/{year}.json
+  discovery: https://planomy.net/tax-data/index.json
+  no_ids: >-
+    There are no opaque resource identifiers or id prefixes. The only keys are the tax year, the
+    `sources` map keys (e.g. irs-notice-2025-67, ssa-cola-2026, cms-2026-premiums), USPS state codes,
+    and filing-status names.
+entities:
+  - name: TaxDataIndex
+    description: Manifest of published years.
+    fields: [latest, years, schema, documentation, yearUrlTemplate, license]
+  - name: TaxYearDataset
+    description: The complete figures for one tax year.
+    fields:
+      - year
+      - version
+      - publishedAt
+      - lastUpdated
+      - schema
+      - license
+      - sources
+      - federal
+      - fica
+      - socialSecurity
+      - medicare
+      - contributionLimits
+      - phaseOuts
+      - rmd
+      - retirementContributionLimitDefaults
+      - states
+  - name: SourceReference
+    description: One upstream agency citation.
+    fields: [title, publisher, url, retrieved]
+    observed_keys:
+      - irs-notice-2025-67
+      - irs-cola-table
+      - irs-rev-proc-2025-19
+      - irs-pub-969
+      - irs-rev-proc-2025-32
+      - irs-topic-751
+      - irs-td-10001
+      - ssa-cola-2026
+      - cms-2026-premiums
+    publishers: [Internal Revenue Service, Social Security Administration, Centers for Medicare & Medicaid Services]
+  - name: Federal
+    description: Federal income tax brackets and standard deduction.
+    fields: [source, brackets, standardDeduction]
+  - name: Fica
+    description: Payroll tax rates, wage base and the additional Medicare threshold.
+    fields: [source, socialSecurityRate, socialSecurityWageBase, medicareRate, additionalMedicareRate, additionalMedicareThreshold]
+  - name: SocialSecurity
+    description: COLA, wage base, quarter of coverage and the retirement earnings test.
+    fields: [source, colaRate, wageBase, quarterOfCoverage, earningsTest]
+  - name: Medicare
+    description: Part A/B/D premiums and deductibles plus the IRMAA tier tables.
+    fields: [source, notes, partBMonthlyPremium, partBAnnualDeductible, partAInpatientDeductible, partDMonthlyPremium, irmaaTiers]
+  - name: ContributionLimits
+    description: Annual limits across employer plans, IRA, SIMPLE, HSA, HDHP and health FSA.
+    fields: [employerPlans, ira, simple, hsa, hdhp, healthFsa]
+  - name: PhaseOuts
+    description: MAGI ranges over which Roth IRA, traditional IRA deduction and Saver's Credit phase out.
+    fields: [rothIra, traditionalIraDeduction, saversCredit]
+  - name: Rmd
+    description: Required minimum distribution applicable ages and beginning-date rule.
+    fields: [source, note, applicableAges, requiredBeginningDate, rothIraOwnerDistributionsRequired, designatedRothAccountDistributionsRequired]
+  - name: StateTaxPreset
+    description: A flat rate or a bracket set for one state.
+    fields: [kind, rate, brackets]
+    observed_keys: [NONE, PA, IL, MA, VA, CA, NY, NJ, OR, MN]
+  - name: Bracket
+    description: One marginal band, {min, rate}. Upper bound is the next entry's min.
+    fields: [min, rate]
+  - name: IrmaaTier
+    description: One income-related monthly adjustment tier.
+    fields: [magiMin, partBMonthlySurcharge, partBTotalMonthlyPremium, partDMonthlySurcharge]
+  - name: PhaseOutRange
+    fields: [start, end]
+  - name: EarningsTestLimit
+    fields: [monthly, annual, withholding]
+relationships:
+  - from: TaxDataIndex
+    to: TaxYearDataset
+    kind: has_many
+    via: years
+    detail: Each entry in `years` resolves through `yearUrlTemplate` to one dataset document.
+  - from: TaxYearDataset
+    to: SourceReference
+    kind: has_many
+    via: sources
+    detail: Map keyed by source id.
+  - from: Federal
+    to: SourceReference
+    kind: belongs_to
+    via: source
+  - from: Fica
+    to: SourceReference
+    kind: belongs_to
+    via: source
+  - from: SocialSecurity
+    to: SourceReference
+    kind: belongs_to
+    via: source
+  - from: Medicare
+    to: SourceReference
+    kind: belongs_to
+    via: source
+  - from: ContributionLimits.employerPlans
+    to: SourceReference
+    kind: belongs_to
+    via: source
+  - from: ContributionLimits.ira
+    to: SourceReference
+    kind: belongs_to
+    via: source
+  - from: ContributionLimits.simple
+    to: SourceReference
+    kind: belongs_to
+    via: source
+  - from: ContributionLimits.hsa
+    to: SourceReference
+    kind: belongs_to
+    via: source
+    note: Also carries `catchUpSource` — a second reference (irs-pub-969) for the fixed age-55 catch-up.
+  - from: ContributionLimits.hdhp
+    to: SourceReference
+    kind: belongs_to
+    via: source
+  - from: ContributionLimits.healthFsa
+    to: SourceReference
+    kind: belongs_to
+    via: source
+  - from: PhaseOuts.rothIra
+    to: SourceReference
+    kind: belongs_to
+    via: source
+  - from: PhaseOuts.traditionalIraDeduction
+    to: SourceReference
+    kind: belongs_to
+    via: source
+  - from: PhaseOuts.saversCredit
+    to: SourceReference
+    kind: belongs_to
+    via: source
+  - from: Rmd
+    to: SourceReference
+    kind: belongs_to
+    via: source
+  - from: Federal
+    to: Bracket
+    kind: has_many
+    via: brackets.single / brackets.marriedJoint
+  - from: StateTaxPreset
+    to: Bracket
+    kind: has_many
+    via: brackets.single / brackets.marriedJoint
+    detail: Only when kind is `brackets`.
+  - from: Medicare
+    to: IrmaaTier
+    kind: has_many
+    via: irmaaTiers.single / irmaaTiers.marriedJoint
+  - from: SocialSecurity
+    to: EarningsTestLimit
+    kind: has_one
+    via: earningsTest.underFullRetirementAge / earningsTest.yearReachingFullRetirementAge
+  - from: PhaseOuts
+    to: PhaseOutRange
+    kind: has_many
+    via: per-filing-status keys
+domains:
+  - name: income tax
+    entities: [Federal, StateTaxPreset, Bracket]
+  - name: payroll tax
+    entities: [Fica]
+  - name: social security
+    entities: [SocialSecurity, EarningsTestLimit]
+  - name: health coverage
+    entities: [Medicare, IrmaaTier]
+  - name: retirement savings
+    entities: [ContributionLimits, PhaseOuts, Rmd]
+  - name: provenance
+    entities: [SourceReference]
+notes:
+  - >-
+    `states` is a preset list of ten keys, not full 50-state coverage. Only the explicit `NONE` key
+    means "no state income tax"; a missing state means "not modelled".
+  - >-
+    `medicare.notes` documents a deliberate divergence: partBMonthlySurcharge in the fourth tier is
+    derived from the statutory cost-sharing multipliers and differs from the CMS-published figure by
+    $0.10. Consumers wanting the CMS number should read partBTotalMonthlyPremium.
+  - >-
+    IRMAA uses a two-year MAGI lookback — 2026 premiums key off 2024 MAGI. The dataset states this in
+    `medicare.notes` rather than in a field name.

@@ -1,0 +1,82 @@
+overlay: 1.0.0
+info:
+  title: API Evangelist enhancements for Planomy Tax Data JSON
+  version: 1.0.0
+extends: openapi/planomy-tax-data-openapi.yml
+x-provenance:
+  generated: '2026-08-09'
+  method: generated
+  source: >-
+    Live probes of https://planomy.net/tax-data/ plus the published documentation at
+    https://planomy.net/data/ and https://planomy.net/embed/
+  note: >-
+    Planomy publishes no OpenAPI, so the document this overlay extends is itself API
+    Evangelist-authored from observed responses. This overlay carries the enrichment layer — rating
+    metadata, the observed-vs-documented CORS divergence, caching guidance and the cross-links to the
+    rest of the repo — separately from the description of the wire behaviour.
+actions:
+  - target: $.info
+    update:
+      x-apievangelist-profile: https://apis.io/provider/planomy-tax-data/
+      x-apievangelist-repo: https://github.com/api-evangelist/planomy-tax-data
+      x-authentication: none
+      x-artifacts:
+        conventions: conventions/planomy-tax-data-conventions.yml
+        errors: errors/planomy-tax-data-problem-types.yml
+        lifecycle: lifecycle/planomy-tax-data-lifecycle.yml
+        data-model: data-model/planomy-tax-data-data-model.yml
+        conformance: conformance/planomy-tax-data-conformance.yml
+        json-schema: json-schema/planomy-tax-data-tax-year-dataset.json
+        components: components/planomy-tax-data-components.yml
+        agentic-access: agentic-access/planomy-tax-data-agentic-access.yml
+  - target: $.info
+    update:
+      x-cors:
+        documented: false
+        observed: true
+        observed_header: 'access-control-allow-origin: *'
+        preflight: OPTIONS returns 405, so only CORS simple requests succeed.
+        verified: '2026-08-09'
+        note: >-
+          The published documentation states no CORS header is sent. The deployed edge sends a
+          wildcard. Stated policy and deployed behaviour disagree; the header is undocumented and
+          could be withdrawn without notice.
+  - target: $.info
+    update:
+      x-freshness:
+        cadence: >-
+          Upstream-driven. Retirement-plan limits late October / early November, HSA figures in
+          spring, Medicare premiums in November.
+        signals: [publishedAt, lastUpdated, 'sources.*.retrieved']
+        recommended_poll: >-
+          Conditional GET with If-None-Match, no more than daily. The origin answered 304 on
+          2026-08-09.
+  - target: $.paths['/tax-data/{year}.json'].get
+    update:
+      x-caching:
+        strategy: conditional-get
+        etag: strong
+        example_request_header: 'If-None-Match: "8642a3ae66c6d4201323c66ae6e07c15"'
+        verified_304: true
+      x-agent-guidance: >-
+        Resolve `year` from getTaxDataIndex. A year that is valid but unpublished and a malformed
+        year both return the same HTML 404, so the manifest is the only reliable way to tell them
+        apart.
+  - target: $.paths['/tax-data/index.json'].get
+    update:
+      x-agent-guidance: >-
+        Call this first. `latest` is the year to use unless the caller named one; `years[]` is the
+        complete set; `yearUrlTemplate` is how to build the URL.
+  - target: $.components.schemas.StateTaxPreset
+    update:
+      x-coverage-warning: >-
+        Ten keys only (NONE, PA, IL, MA, VA, CA, NY, NJ, OR, MN) — a preset list for the Planomy
+        planner, not 50-state coverage. Only the explicit `NONE` key means "no state income tax"; a
+        state that is simply absent is unmodelled, and treating absence as zero will understate tax.
+  - target: $.components.schemas.SourceReference
+    update:
+      x-why-this-matters: >-
+        This is the provider's strongest design decision. Every section carries a `source` key into
+        this map, so any single figure can be traced to a named IRS, SSA, CMS or Federal Register
+        document with the date Planomy last checked it. Agents citing a figure should cite through
+        this map, not through planomy.net.

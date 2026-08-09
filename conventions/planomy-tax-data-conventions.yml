@@ -1,0 +1,125 @@
+generated: '2026-08-09'
+method: searched
+source: https://planomy.net/data/
+docs: https://planomy.net/data/
+description: >-
+  Cross-cutting request/response semantics for the Planomy tax-data endpoints, read from the published
+  documentation and confirmed against live response headers on 2026-08-09.
+authentication:
+  style: none
+  detail: Keyless, anonymous GET. See authentication/planomy-tax-data-authentication.yml.
+transport:
+  protocol: HTTP/2 over TLS 1.3
+  origin: Cloudflare CDN in front of planomy.net
+  methods_supported: [GET, HEAD]
+  methods_rejected: 'OPTIONS and POST both return 405 (verified 2026-08-09).'
+  media_type: application/json
+caching:
+  observed_cache_control: 'public, max-age=0, must-revalidate'
+  etag: true
+  etag_type: strong
+  conditional_requests: true
+  guidance: >-
+    The correct client pattern is a conditional GET. Store the ETag from the first response and send it
+    back as If-None-Match; the origin answers 304 when the figures have not changed, which is the whole
+    year for most of the year. Do not poll on a short interval — the upstream agencies publish
+    retirement-plan limits in late October/early November, HSA figures in spring, and Medicare premiums
+    in November.
+cors:
+  documented: false
+  documented_statement: >-
+    The /data/ page states the endpoint "does not currently send an Access-Control-Allow-Origin header,
+    so a browser on a different domain will be blocked by CORS. Fetch it from your server, build step,
+    or scheduled job instead."
+  observed: true
+  observed_header: 'access-control-allow-origin: *'
+  discrepancy: >-
+    DOCS ARE STALE. On 2026-08-09 both https://planomy.net/tax-data/2026.json and
+    https://planomy.net/tax-data/index.json returned `access-control-allow-origin: *`, so a browser on
+    any origin CAN fetch them directly today. The documentation still warns the opposite, and the
+    API Evangelist profile inherited that warning from the original submission. Treat the header as
+    authoritative for what works now, and the prose as authoritative for what Planomy will commit to —
+    an unstated wildcard can be withdrawn without notice. This is worth Planomy correcting in either
+    direction: publish the CORS policy, or drop the header.
+  preflight: >-
+    OPTIONS on the endpoint returns 405, so a preflighted request would fail. This does not affect the
+    common case: a plain cross-origin `fetch()` with no custom headers is a CORS simple request and
+    needs no preflight, which is why the wildcard works in a browser today.
+  verified: '2026-08-09'
+pagination:
+  supported: false
+  detail: >-
+    No pagination. Each endpoint returns one complete document; the year dataset is ~14 KB. The index
+    manifest is the enumeration surface — `years[]` lists every dataset that exists.
+filtering_and_sparse_fields:
+  supported: false
+  detail: No query parameters of any kind are honoured. The only variable is the {year} path segment.
+idempotency:
+  idempotency_key: false
+  detail: >-
+    There is no idempotency-key protocol because there is no write surface. Every operation is an HTTP
+    GET against a static file, so retries are safe and free by HTTP semantics alone. Recorded as
+    not-applicable rather than supported — no Idempotency pointer is claimed for this provider.
+request_tracing:
+  request_id_header: false
+  detail: >-
+    No provider request-id header. Cloudflare returns `cf-ray`, which is edge-level and is not a
+    Planomy support identifier.
+versioning:
+  scheme: dual
+  in_path: >-
+    The tax year is the path segment — /tax-data/{year}.json. Resolve it from
+    /tax-data/index.json (`latest`, `years[]`, `yearUrlTemplate`) rather than hard-coding it.
+  in_payload: >-
+    A `version` field on the document itself (currently "v1") carries the contract version.
+  policy: >-
+    "Stable, additive contract: fields are added, never silently renamed or repurposed. A breaking
+    change would ship under a new `version`." — https://planomy.net/data/
+  media_type_versioning: false
+  header_versioning: false
+data_conventions:
+  money: US dollars as bare numbers — no currency symbol, no thousands separator.
+  rates: Decimal fractions — 0.062 means 6.2%.
+  dates: ISO 8601. `publishedAt` is a date-time, `lastUpdated` and `sources.*.retrieved` are dates.
+  filing_status_keys: [single, marriedJoint, marriedSeparate, headOfHousehold]
+  brackets: >-
+    Each bracket is {min, rate} and represents the band starting at `min`. The upper bound is the next
+    entry's `min`; the final entry is open-ended.
+  source_attribution: >-
+    Every section carries a `source` string that is a key into the document-level `sources` map, which
+    resolves to {title, publisher, url, retrieved}. This is the provider's strongest convention — it
+    makes every single figure independently citable back to an IRS/SSA/CMS/Federal Register document.
+  state_presets: >-
+    `states` is keyed by USPS code plus the pseudo-key `NONE`; each value is either {kind: flat, rate}
+    or {kind: brackets, brackets: {single[], marriedJoint[]}}. Only ten keys exist — it is a preset
+    list for the planner, not full 50-state coverage. Absence of a state does not mean it has no
+    income tax; only the explicit `NONE` key means that.
+error_envelope:
+  structured_errors: false
+  detail: >-
+    There is no error envelope. A missing year returns the site's HTML 404 page with
+    `content-type: text/html`. Clients must branch on status code and Content-Type, never on a parsed
+    body. See errors/planomy-tax-data-problem-types.yml.
+rate_limiting:
+  published_limits: false
+  headers: false
+  statement: >-
+    "The endpoints are static files served over HTTPS from a CDN with permissive caching, so normal use
+    will not run into a limit — though as with any CDN-fronted origin, abusive traffic can still be
+    throttled." — https://planomy.net/data/
+  guidance: >-
+    No RateLimit-* or Retry-After headers are emitted on success. Because throttling is edge-side and
+    unannounced, a client should treat 403/429/5xx from the edge as backoff signals and rely on
+    conditional GETs to keep volume near zero.
+licensing:
+  statement: >-
+    "Public-domain figures published by US federal agencies. Free to reuse; a link to
+    https://planomy.net/data/ is appreciated."
+  attribution_required: false
+  attribution_appreciated: true
+cross_links:
+  errors: errors/planomy-tax-data-problem-types.yml
+  lifecycle: lifecycle/planomy-tax-data-lifecycle.yml
+  authentication: authentication/planomy-tax-data-authentication.yml
+  data_model: data-model/planomy-tax-data-data-model.yml
+  openapi: openapi/planomy-tax-data-openapi.yml

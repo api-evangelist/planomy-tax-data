@@ -1,0 +1,35 @@
+generated: '2026-08-09'
+method: searched
+source: https://planomy.net/data/
+docs: https://planomy.net/data/
+summary:
+  types: []
+  authentication_required: false
+  model: open-access
+  statement: >-
+    "No key and no sign-up." — https://planomy.net/data/. Both endpoints are static JSON files served
+    anonymously over HTTPS; there is no credential of any kind to obtain, present, rotate or revoke.
+schemes: []
+verified:
+  - check: anonymous GET of https://planomy.net/tax-data/2026.json
+    result: 200 application/json
+    fetched: '2026-08-09'
+  - check: anonymous GET of https://planomy.net/tax-data/index.json
+    result: 200 application/json
+    fetched: '2026-08-09'
+  - check: OpenAPI securitySchemes
+    result: >-
+      empty — openapi/planomy-tax-data-openapi.yml declares no securitySchemes and sets `security: []`
+      on both operations, which is the accurate machine-readable statement of an open API.
+notes:
+  - >-
+    Keyless is a deliberate posture, not an omission: the underlying figures are US-federal
+    public-domain data and the licence statement invites reuse.
+  - >-
+    There is a separate, unrelated account system for the Planomy planner application itself
+    (optional sign-in for cloud sync and Plus billing, /app/). It does not gate the data endpoints and
+    exposes no documented API.
+  - >-
+    Because there is no credential, an agent needs no secret handling for this API — the only client
+    concerns are caching (ETag / If-None-Match) and polite request volume. See
+    conventions/planomy-tax-data-conventions.yml.

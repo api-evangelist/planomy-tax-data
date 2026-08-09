@@ -1,0 +1,70 @@
+generated: '2026-08-09'
+method: probed
+source: live probes of https://planomy.net/tax-data/ plus openapi/planomy-tax-data-openapi.yml
+format: none
+format_detail: >-
+  Planomy publishes no error catalog and returns no structured error document. This is not an RFC 9457
+  API: failures surface as the site's HTML 404 page or a bare CDN status. Every entry below was observed
+  on the wire on 2026-08-09, not read off a docs page — there is no docs page for errors.
+envelope:
+  structured: false
+  content_type_on_error: text/html; charset=utf-8
+  guidance: >-
+    Branch on the HTTP status code and Content-Type. Never attempt to JSON-parse a non-2xx body — it
+    will be HTML and the parse will throw where a clean "not found" was wanted.
+problems:
+  - status: 404
+    title: Page not found
+    detail: >-
+      Returned for any path with no published file, including a year that is not in the index
+      manifest. The body is the site 404 HTML page (376 bytes, <title>Page not found | Planomy</title>).
+    observed:
+      - url: https://planomy.net/tax-data/2020.json
+        http_status: 404
+        content_type: text/html; charset=utf-8
+      - url: https://planomy.net/tax-data/9999.json
+        http_status: 404
+        content_type: text/html; charset=utf-8
+      - url: https://planomy.net/tax-data/abc.json
+        http_status: 404
+        content_type: text/html; charset=utf-8
+    remediation: >-
+      Do not guess a year. GET /tax-data/index.json and use `latest` or a value from `years[]`. A
+      non-integer path segment produces the same 404 as a valid-but-unpublished year, so the manifest
+      is the only way to tell "not yet published" from "malformed".
+    source_operation: openapi/planomy-tax-data-openapi.yml#getTaxDataYear
+  - status: 405
+    title: Method not allowed
+    detail: >-
+      Only GET and HEAD are served. OPTIONS and POST were both refused with 405, which also means a
+      CORS preflight cannot succeed.
+    observed:
+      - url: https://planomy.net/tax-data/2026.json
+        method: OPTIONS
+        http_status: 405
+      - url: https://planomy.net/tax-data/2026.json
+        method: POST
+        http_status: 405
+    remediation: Use GET (or HEAD for a cheap freshness check).
+    source_operation: openapi/planomy-tax-data-openapi.yml#getTaxDataYear
+non_errors:
+  - status: 304
+    title: Not Modified
+    detail: >-
+      Confirmed working. Sending the strong ETag back as If-None-Match returned 304 with no body.
+      Treat 304 as success and keep the cached document.
+    observed:
+      - url: https://planomy.net/tax-data/2026.json
+        request_header: 'If-None-Match: "8642a3ae66c6d4201323c66ae6e07c15"'
+        http_status: 304
+edge_conditions:
+  - status: 429
+    documented: false
+    detail: >-
+      Not observed, but the docs say "abusive traffic can still be throttled" at the CDN. If a client
+      ever sees 403/429/5xx it is edge-side rate limiting, carries no Retry-After from the origin, and
+      should be handled with exponential backoff.
+gaps:
+  - No machine-readable error format (no application/problem+json, no JSON error body at all).
+  - A missing year and a malformed year are indistinguishable — both are a generic HTML 404.
+  - No published error reference page.

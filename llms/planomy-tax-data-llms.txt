@@ -1,0 +1,112 @@
+# Planomy
+
+> Planomy is a free, local-first US personal-finance and retirement planner. Its
+> browser-based tools model year-by-year cash flow, federal and state tax, Social
+> Security, Medicare and IRMAA, required minimum distributions, Roth conversions,
+> Monte Carlo outcomes and historical returns without requiring an account.
+
+Planomy is educational planning software, not financial, tax or investment advice.
+The core planner and every calculator are free; plan data stays on the user's device
+unless the user chooses an account and cloud sync.
+
+## Start here
+
+- [Planomy overview](https://planomy.net/): What the planner models, how local-first storage works, and how to open it.
+- [Open the retirement planner](https://planomy.net/app/): Build a detailed US retirement plan in the browser.
+- [Pricing](https://planomy.net/pricing): Free and Plus features, with exact monthly and annual prices.
+- [All financial calculators](https://planomy.net/calculators/): 37 focused calculators, free and without sign-up.
+- [All retirement guides](https://planomy.net/guides/): 37 plain-English guides to retirement, tax and personal-finance questions.
+- [2026 retirement and tax data](https://planomy.net/data/): Dated, source-attributed IRS, SSA and CMS figures, also available as JSON.
+
+## Calculators
+
+- [401(k) Contribution Calculator With Match: 2026 Limits](https://planomy.net/calculators/401k-contribution): Free, no sign-up: find the contribution percent that captures every dollar of employer match, the free money you are leaving behind, and the 2026 limit.
+- [California 529 Calculator: Cost Gap and CA Tax Rules](https://planomy.net/calculators/529-california): Project a ScholarShare 529 against four years of California college costs, get the monthly amount that closes the gap, and see why CA gives no state deduction.
+- [Florida 529 Calculator: Savings Gap and No State Tax](https://planomy.net/calculators/529-florida): Project a Florida 529 to your child
+- [Illinois 529 Calculator: Bright Start Goal and Tax](https://planomy.net/calculators/529-illinois): Project a Bright Start 529 against four years of college costs and see what Illinois
+- [New Jersey 529 Calculator: NJBEST Goal and Deduction](https://planomy.net/calculators/529-new-jersey): Project an NJBEST 529 against four years of college costs, get the monthly amount that fully funds it, and check the $10,000 NJ deduction and its $200k cap.
+- [New York 529 Calculator: Cost Gap and NY Deduction](https://planomy.net/calculators/529-new-york): Project a New York 529 against four years of college costs and see what the $5,000 single / $10,000 joint NY deduction is worth — about $600 a year for couples.
+- [Ohio 529 Calculator: CollegeAdvantage Goal and Tax](https://planomy.net/calculators/529-ohio): Project a CollegeAdvantage 529 against four years of college costs, and see how Ohio
+- [Virginia 529 Calculator: Invest529 Goal and Deduction](https://planomy.net/calculators/529-virginia): Project an Invest529 account against four years of college costs and see how Virginia
+- [Annuity Calculator: How Much Does an Annuity Pay a Month?](https://planomy.net/calculators/annuity-payout): Free annuity payout calculator, no sign-up. Enter a premium, rate and term for the monthly income an immediate annuity buys — a fixed term, or for life.
+- [Long-Term Capital Gains Tax Calculator: Free, 2026](https://planomy.net/calculators/capital-gains-tax): Free capital gains tax estimator, no sign-up: the 2026 long-term 0%, 15% and 20% brackets stacked on your income, short-term rates, and the 3.8% NIIT.
+- [CD Ladder Calculator: Free Rung, APY and Maturity Table](https://planomy.net/calculators/cd-ladder): Free CD ladder calculator, no sign-up. $25,000 in a 5-rung ladder at 4.25% APY earns $3,374 of interest — get every maturity date and what each rung pays.
+- [529 College Savings Calculator: Free Growth Projection](https://planomy.net/calculators/college-savings-529): Free 529 plan calculator, no sign-up: four-year college costs the year your child enrolls, what your 529 grows to by then, and the monthly gap to close.
+- [Compound Interest Calculator: Growth Year by Year](https://planomy.net/calculators/compound-growth): See what a starting balance plus monthly contributions becomes, and how much of the final total is money you put in versus money compounding made for you.
+- [Debt Payoff Calculator: Snowball vs Avalanche Dates](https://planomy.net/calculators/debt-payoff): Enter every debt once and get both payoff dates side by side, the total interest each method costs, and what an extra monthly payment takes off the finish line.
+- [Emergency Fund Calculator: 3, 6 or 12 Months of Expenses](https://planomy.net/calculators/emergency-fund): Free emergency fund calculator, no sign-up: a 3 to 12 month target sized to your income stability and dependents, your gap today, and months to close it.
+- [FIRE Calculator: Your Number and Retire-Early Age](https://planomy.net/calculators/fire-number): Turn annual spending and a withdrawal rate into the portfolio that makes work optional, then see the exact age your current savings rate gets you there.
+- [Home Affordability Calculator: 28/36 Rule Max Price](https://planomy.net/calculators/home-affordability): See the maximum home price a lender
+- [HSA Contribution Calculator: 2026 Limits and Tax](https://planomy.net/calculators/hsa-contribution): See how much 2026 HSA room you have left after your employer
+- [Inflation Impact Calculator: What Your Money Buys Later](https://planomy.net/calculators/inflation-impact): Free inflation impact calculator, no sign-up. Enter an amount, a horizon and a rate to see the purchasing power it keeps and the income you would need later.
+- [Investment Calculator With Fees: Expense Ratio Impact](https://planomy.net/calculators/investment-fee-impact): Free, no sign-up: compare two expense ratios over your real horizon and see the exact dollars a higher fund fee takes off your balance — often six figures.
+- [401(k), IRA and 403(b) Withdrawal Tax Calculator 2026](https://planomy.net/calculators/ira-withdrawal-tax): Enter a withdrawal, your age and your other income to see the federal tax, the 10% early-withdrawal penalty, and the cash you actually keep. 2026 brackets.
+- [Loan Amortization Calculator: Free Principal and Interest](https://planomy.net/calculators/loan-amortization): Free, no sign-up: your monthly payment, total interest and payoff date, the full principal-and-interest schedule, and what an extra payment removes.
+- [Medicare IRMAA Calculator: 2026 Surcharge Brackets](https://planomy.net/calculators/medicare-irmaa): Find your Part B and Part D surcharge tier from the income you reported two years ago, the monthly premium it adds, and how close you are to the next cliff.
+- [Mortgage Payoff Calculator: Interest Saved Early](https://planomy.net/calculators/mortgage-payoff): See your payoff date and lifetime interest, then add an extra monthly payment to see exactly how many years and how many interest dollars it takes off the loan.
+- [Net Worth Calculator: Free, No Sign-Up, Instant Total](https://planomy.net/calculators/net-worth): Free net worth calculator: list what you own and owe for your total, your liquid net worth excluding your home, and the asset-to-debt split. No sign-up.
+- [Rent vs Buy Calculator: Break-Even Year and Verdict](https://planomy.net/calculators/rent-vs-buy): Compare the true cost of renting and buying over the years you plan to stay, including maintenance, closing costs, and the return your down payment gives up.
+- [Free Retirement Drawdown Calculator: Will Savings Last?](https://planomy.net/calculators/retirement-drawdown): No sign-up: enter your portfolio, monthly spending, return and inflation to see the year your savings run out — or last indefinitely, with 4% rule context.
+- [Retirement Savings by Age Calculator: Are You on Track?](https://planomy.net/calculators/retirement-savings-by-age): Compare your balance to the salary-multiple benchmarks — 1x by 30, 3x by 40, 6x by 50, 10x by 67 — and see what you would need to save to catch back up.
+- [RMD Calculator 2026: IRA and 401(k) Minimum Distribution](https://planomy.net/calculators/rmd): Free RMD calculator, no sign-up: the age yours start, your first required distribution to the dollar, the Uniform Lifetime Table divisor, and every year after.
+- [Roth Conversion Calculator: Tax Now vs Savings Later](https://planomy.net/calculators/roth-conversion): Compare the tax you would pay converting today against the tax-free growth you keep later, and see the after-tax value of converting versus leaving it alone.
+- [Roth vs Traditional 401(k) Calculator: Instant Answer](https://planomy.net/calculators/roth-vs-traditional-401k): Free, no sign-up: enter your salary, contribution rate and the tax rates you expect now and later to see which 401(k) leaves more after tax, and why.
+- [Savings Goal Calculator: Monthly Amount to Hit It](https://planomy.net/calculators/savings-goal): Work backward from any goal and date to the monthly amount you need, and see how much of the target your investment returns cover instead of your paycheck.
+- [Savings Rate Calculator: Years to Financial Freedom](https://planomy.net/calculators/savings-rate): Find your true savings rate and the number of years it buys you. Uses the 25x rule to turn today
+- [Social Security Break-Even Age Calculator: Free, 62 vs 70](https://planomy.net/calculators/social-security-break-even): Free, no sign-up: compare any two claiming ages and see the exact year the delayed check overtakes the early one in cumulative benefits, year by year.
+- [Social Security Calculator: Monthly Benefit at 62 to 70](https://planomy.net/calculators/social-security-claiming-age): See your monthly benefit at every claiming age from 62 to 70, your lifetime total at each one, and which age maximizes what you collect over a lifetime.
+- [Take-Home Pay Calculator: 2026 Paycheck After Taxes](https://planomy.net/calculators/take-home-pay): Estimate 2026 net pay after federal tax, Social Security, Medicare, 401(k), and HSA, with per-paycheck and annual totals so you see where every dollar goes.
+- [Retirement Withdrawal Tax Calculator: Which Account First](https://planomy.net/calculators/tax-aware-withdrawal): Free retirement withdrawal tax calculator: which account to tap first across cash, taxable, 401(k), 403(b), IRA, Roth and HSA, plus the early penalties.
+
+## Guides
+
+- [401(k) Rollover Options: Compare All 4 When You Quit](https://planomy.net/guides/401k-rollover-options): Leave it, roll to an IRA, move it to a new 401(k), or cash out — what each really costs, plus the 60-day and 20%-withholding traps that cost people thousands.
+- [401(k) Withdrawal Taxes 2026: Rates and Penalties](https://planomy.net/guides/401k-withdrawal-taxes): How 401(k), 403(b), and 457(b) withdrawals are taxed: ordinary income rates, the 10% early penalty and its exceptions, and why 20% withholding is not your bill.
+- [Backdoor Roth IRA: The Steps and the Pro-Rata Trap](https://planomy.net/guides/backdoor-roth-ira): The exact order to contribute, convert, and file Form 8606 — plus how the pro-rata rule taxes your conversion if you still hold any traditional IRA balance.
+- [Best Retirement Planning Software in 2026: An Honest Guide](https://planomy.net/guides/best-retirement-planning-software): A category guide to retirement planning software: the four questions that decide it, what each type of tool is best at, and where Planomy honestly fits.
+- [Bucket Strategy for Retirement Income: 3 Buckets](https://planomy.net/guides/bucket-strategy-retirement-income): How the three-bucket approach shields your stocks from a bad market, how to size and refill each bucket, and the places the strategy quietly falls short.
+- [Can I Retire at 62? The Math, Step by Step](https://planomy.net/guides/can-i-retire-at-62): Claiming Social Security at 62 cuts it to 70% of your full benefit. What that costs in dollars, the three-year Medicare gap, and the portfolio the rest needs.
+- [Can I Retire on $500,000? An Honest Look](https://planomy.net/guides/can-i-retire-with-500k): Half a million funds about $20,000 a year at 4%. Worked examples of when that is enough with Social Security, when it is not, and four ways to close the gap.
+- [Free Retirement Planner With No Sign-Up Required](https://planomy.net/guides/free-retirement-planner-no-signup): Planomy
+- [How to Calculate Capital Gains Tax: 2026 Brackets](https://planomy.net/guides/how-capital-gains-tax-is-calculated): Long-term gains stack on top of your ordinary income. The 2026 0%, 15% and 20% breakpoints, short-term rates, the 3.8% NIIT and four worked examples.
+- [How Long Will My Retirement Savings Last?](https://planomy.net/guides/how-long-will-my-money-last): The depletion formula behind the answer, a table showing how long a portfolio lasts at each withdrawal rate and real return, and why an average return misleads.
+- [Retirement Number Calculator: How Much Do I Need?](https://planomy.net/guides/how-much-do-i-need): Turn retirement spending and Social Security into a portfolio target on one screen, with the same target shown at 3%, 3.5%, 4%, and 5% withdrawal rates.
+- [How Much Does a $500,000 Annuity Pay Per Month?](https://planomy.net/guides/how-much-does-a-500k-annuity-pay-per-month): $500,000 pays about $3,300 a month over 20 years at a 5% return. Full payout table from $50,000 to $2 million, by term, rate and the age you start.
+- [How Much Does a Couple Need to Retire?](https://planomy.net/guides/how-much-does-a-couple-need-to-retire): Two Social Security benefits, one longer joint horizon, and the survivor drop that most plans ignore — the arithmetic of retiring together, worked end to end.
+- [How Much Is a 6-Month Emergency Fund? (With Table)](https://planomy.net/guides/how-much-is-a-6-month-emergency-fund): Six months of essential expenses, not six months of income. $4,000 a month of essentials means $24,000. Table for 3, 6, 8 and 12 months, and how long it takes.
+- [How Much Do I Need to Retire at 55?](https://planomy.net/guides/how-much-to-retire-at-55): Retiring at 55 means funding a 40-year retirement and bridging to Social Security. The worked math, the withdrawal rate it needs, and how to reach the money.
+- [How Much Do You Need to Retire? The 25x Rule, Honestly](https://planomy.net/guides/how-much-to-retire): The 25x rule and the 4% math worked end to end, how Social Security lowers your number, and the two places the rule breaks down: inflation and taxes.
+- [How Much Will a 529 Grow in 10, 15 or 18 Years?](https://planomy.net/guides/how-much-will-a-529-grow): $300 a month from birth reaches about $116,000 by age 18 at a 6% return — $64,800 contributed and $51,400 of growth. Full table by amount, term and rate.
+- [How Social Security Is Taxed: The 50% and 85% Rules](https://planomy.net/guides/how-social-security-is-taxed): Provisional income explained with worked examples, the thresholds where 50% and then 85% of your benefit becomes taxable, and which states still tax benefits.
+- [How to Calculate Your 401(k) Employer Match](https://planomy.net/guides/how-to-calculate-401k-employer-match): The three match formulas employers use, run line by line on a real salary, plus the per-paycheck timing trap and the vesting schedule behind it.
+- [HSA Rules 2026: Limits, the 20% Penalty, and Age 65](https://planomy.net/guides/hsa-contribution-limits-and-rules): The 2026 HSA contribution limits, whether employer money counts toward them, the last-month rule, the 20% withdrawal penalty, and what changes at 65.
+- [Is $1 Million Enough to Retire?](https://planomy.net/guides/is-1-million-enough-to-retire): What a million dollars really pays each year, how your retirement age changes the safe number, the tax you still owe, and the spending level where it breaks.
+- [Should I Pay Off My Mortgage Before Retiring?](https://planomy.net/guides/pay-off-mortgage-before-retiring): The present-value test that settles the rate-versus-return argument, the tax spike from using IRA money, and when a paid-off house is worth lost flexibility.
+- [Pension Lump Sum or Monthly Payment?](https://planomy.net/guides/pension-lump-sum-vs-monthly): Turn the offer into a payout rate, test it against a 4% withdrawal, then price what the rate hides: no cost-of-living rises, survivor options, employer risk.
+- [Planomy vs Boldin: Which Retirement Planner Fits?](https://planomy.net/guides/planomy-vs-boldin): A fair comparison of Planomy and Boldin (formerly NewRetirement): on-device versus cloud account, free planner versus subscription, and which suits you.
+- [Planomy vs Empower Personal Dashboard](https://planomy.net/guides/planomy-vs-empower): One aggregates your linked accounts and is funded by a wealth manager. The other projects a plan on your device with no account. They solve different problems.
+- [Planomy vs ProjectionLab: How to Choose](https://planomy.net/guides/planomy-vs-projectionlab): Both project a retirement year by year. The differences that matter are what you pay for, whether an account is required, and how you like to work with a model.
+- [401(k) vs IRA vs Roth vs HSA: 2026 Limits and Order](https://planomy.net/guides/retirement-account-types): What each account costs in tax now, later or never, the 2026 contribution limits side by side, and the filling order that puts each dollar in the right place.
+- [A Retirement Planner That Works Offline](https://planomy.net/guides/retirement-planner-that-works-offline): Most planners stop at the login screen with no connection. Planomy installs to your device, keeps your plan in local storage, and projects while offline.
+- [Retirement Spreadsheet vs Planning Software](https://planomy.net/guides/retirement-planning-spreadsheet-vs-software): A spreadsheet gives you total control and costs nothing. Here is exactly what you have to build yourself, and the point where dedicated software starts to win.
+- [RMD Rules 2026: Age 73, April 1, and the 25% Penalty](https://planomy.net/guides/rmd-rules-and-deadlines): When RMDs start, the once-only April 1 deadline that can double a year of taxable income, how the amount is calculated, QCDs, and the penalty for missing one.
+- [Roth Conversion Ladder: The 5-Year Rule, Explained](https://planomy.net/guides/roth-conversion-ladder): Why the gap years between retiring and RMDs are your conversion window, how to fill a tax bracket without tripping an IRMAA cliff, and a full worked example.
+- [Roth vs Traditional 401(k): The Rule of Thumb](https://planomy.net/guides/roth-vs-traditional-401k): The single question that settles it, when each side actually wins, how the employer match is always taxed later, and why splitting contributions can beat both.
+- [Safe Withdrawal Rate: Is the 4% Rule Still Safe?](https://planomy.net/guides/safe-withdrawal-rate): Where the 4% rule came from, why researchers now argue for 3.5% to 4.5%, how sequence risk breaks the average, and the guardrails that let you spend more.
+- [Sequence of Returns Risk: Why Early Losses Ruin Plans](https://planomy.net/guides/sequence-of-returns-risk): Two retirees, identical average returns, opposite outcomes — why the order only matters once you are withdrawing, and the defenses that actually work.
+- [Tax-Efficient Withdrawal Order: Rules and Exceptions](https://planomy.net/guides/tax-efficient-drawdown-order): The taxable, then traditional, then Roth default explained — and the situations where breaking it saves more: bracket filling, RMDs, IRMAA, and what heirs get.
+- [When Can I Retire? Calculator for Your FI Date](https://planomy.net/guides/when-can-i-retire): Enter savings, annual contributions, and a real return to see the year your portfolio reaches your financial-independence number, projected year by year.
+- [When to Take Social Security: How to Decide](https://planomy.net/guides/when-to-take-social-security): What each claiming age pays as a share of your full benefit, break-even ages worked out in dollars, and why a couple
+
+## Citable data and syndication
+
+- [2026 figures in JSON](https://planomy.net/tax-data/2026.json): Machine-readable US federal tax, contribution, Social Security, Medicare and RMD figures with source metadata.
+- [Available dataset years](https://planomy.net/tax-data/index.json): Manifest for the versioned tax-data files.
+- [Guide RSS feed](https://planomy.net/feed.xml): Syndication feed containing every published Planomy guide.
+- [Full text of every page](https://planomy.net/llms-full.txt): The readable text of all 37 guides and 37 calculators in one file, each with its canonical URL to cite.
+- [XML sitemap](https://planomy.net/sitemap.xml): Canonical, indexable site URLs.
+
+## Policies
+
+- [Privacy policy](https://planomy.net/legal/privacy): What Planomy stores locally, what optional cloud sync changes, and third-party services.
+- [Terms of use](https://planomy.net/legal/terms): Educational-use terms and financial-advice disclaimer.

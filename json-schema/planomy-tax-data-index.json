@@ -1,0 +1,46 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://planomy-tax-data.apievangelist.com/json-schema/planomy-tax-data-index.json",
+  "title": "Planomy Tax Data Index",
+  "description": "Manifest of the published dataset years.",
+  "x-provenance": {
+    "generated": "2026-08-09",
+    "method": "derived",
+    "source": "openapi/planomy-tax-data-openapi.yml",
+    "note": "Derived from the API Evangelist OpenAPI, which was itself written from live 200 responses at https://planomy.net/tax-data/. Planomy publishes a prose schema at https://planomy.net/data/#schema but no machine-readable schema."
+  },
+  "type": "object",
+  "required": [
+    "latest",
+    "years"
+  ],
+  "properties": {
+    "latest": {
+      "type": "integer",
+      "description": "The most recent published tax year."
+    },
+    "years": {
+      "type": "array",
+      "description": "Every tax year with a published dataset file.",
+      "items": {
+        "type": "integer"
+      }
+    },
+    "schema": {
+      "type": "string",
+      "format": "uri",
+      "description": "URL of the prose field-level schema."
+    },
+    "documentation": {
+      "type": "string",
+      "format": "uri"
+    },
+    "yearUrlTemplate": {
+      "type": "string",
+      "description": "RFC 6570-style template resolving a year to its dataset URL."
+    },
+    "license": {
+      "type": "string"
+    }
+  }
+}

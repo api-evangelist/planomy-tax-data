@@ -1,0 +1,350 @@
+{
+  "year": 2026,
+  "version": "v1",
+  "publishedAt": "2026-07-03T00:00:00.000Z",
+  "lastUpdated": "2026-07-27",
+  "schema": "https://planomy.net/data/#schema",
+  "license": "Public-domain figures published by US federal agencies. Free to reuse; a link to https://planomy.net/data/ is appreciated.",
+  "sources": {
+    "irs-notice-2025-67": {
+      "title": "401(k) limit increases to $24,500 for 2026, IRA limit increases to $7,500 (IR-2025-111, Notice 2025-67)",
+      "publisher": "Internal Revenue Service",
+      "url": "https://www.irs.gov/newsroom/401k-limit-increases-to-24500-for-2026-ira-limit-increases-to-7500",
+      "retrieved": "2026-07-27"
+    },
+    "irs-cola-table": {
+      "title": "COLA increases for dollar limitations on benefits and contributions",
+      "publisher": "Internal Revenue Service",
+      "url": "https://www.irs.gov/retirement-plans/cola-increases-for-dollar-limitations-on-benefits-and-contributions",
+      "retrieved": "2026-07-27"
+    },
+    "irs-rev-proc-2025-19": {
+      "title": "Rev. Proc. 2025-19 — 2026 inflation adjusted amounts for Health Savings Accounts (Internal Revenue Bulletin 2025-21)",
+      "publisher": "Internal Revenue Service",
+      "url": "https://www.irs.gov/irb/2025-21_IRB",
+      "retrieved": "2026-07-27"
+    },
+    "irs-pub-969": {
+      "title": "Publication 969, Health Savings Accounts and Other Tax-Favored Health Plans",
+      "publisher": "Internal Revenue Service",
+      "url": "https://www.irs.gov/publications/p969",
+      "retrieved": "2026-07-27"
+    },
+    "irs-rev-proc-2025-32": {
+      "title": "IRS releases tax inflation adjustments for tax year 2026 (Rev. Proc. 2025-32)",
+      "publisher": "Internal Revenue Service",
+      "url": "https://www.irs.gov/newsroom/irs-releases-tax-inflation-adjustments-for-tax-year-2026-including-amendments-from-the-one-big-beautiful-bill",
+      "retrieved": "2026-07-27"
+    },
+    "irs-topic-751": {
+      "title": "Topic no. 751, Social Security and Medicare withholding rates",
+      "publisher": "Internal Revenue Service",
+      "url": "https://www.irs.gov/taxtopics/tc751",
+      "retrieved": "2026-07-27"
+    },
+    "irs-td-10001": {
+      "title": "T.D. 10001, Required Minimum Distributions — final regulations (Internal Revenue Bulletin 2024-33)",
+      "publisher": "Internal Revenue Service",
+      "url": "https://www.irs.gov/irb/2024-33_IRB",
+      "retrieved": "2026-07-27"
+    },
+    "ssa-cola-2026": {
+      "title": "Cost-of-Living Increase and Other Determinations for 2026 (90 FR, published 2025-11-03)",
+      "publisher": "Social Security Administration",
+      "url": "https://www.federalregister.gov/documents/2025/11/03/2025-19763/cost-of-living-increase-and-other-determinations-for-2026",
+      "retrieved": "2026-07-27"
+    },
+    "cms-2026-premiums": {
+      "title": "2026 Medicare Parts A & B Premiums and Deductibles",
+      "publisher": "Centers for Medicare & Medicaid Services",
+      "url": "https://www.cms.gov/newsroom/fact-sheets/2026-medicare-parts-b-premiums-deductibles",
+      "retrieved": "2026-07-27"
+    }
+  },
+  "federal": {
+    "source": "irs-rev-proc-2025-32",
+    "brackets": {
+      "single": [
+        { "min": 0, "rate": 0.1 },
+        { "min": 12400, "rate": 0.12 },
+        { "min": 50400, "rate": 0.22 },
+        { "min": 105700, "rate": 0.24 },
+        { "min": 201775, "rate": 0.32 },
+        { "min": 256225, "rate": 0.35 },
+        { "min": 640600, "rate": 0.37 }
+      ],
+      "marriedJoint": [
+        { "min": 0, "rate": 0.1 },
+        { "min": 24800, "rate": 0.12 },
+        { "min": 100800, "rate": 0.22 },
+        { "min": 211400, "rate": 0.24 },
+        { "min": 403550, "rate": 0.32 },
+        { "min": 512450, "rate": 0.35 },
+        { "min": 768700, "rate": 0.37 }
+      ]
+    },
+    "standardDeduction": {
+      "single": 16100,
+      "marriedJoint": 32200,
+      "marriedSeparate": 16100,
+      "headOfHousehold": 24150
+    }
+  },
+  "fica": {
+    "source": "irs-topic-751",
+    "socialSecurityRate": 0.062,
+    "socialSecurityWageBase": 184500,
+    "medicareRate": 0.0145,
+    "additionalMedicareRate": 0.009,
+    "additionalMedicareThreshold": {
+      "single": 200000,
+      "marriedJoint": 250000
+    }
+  },
+  "socialSecurity": {
+    "source": "ssa-cola-2026",
+    "colaRate": 0.028,
+    "wageBase": 184500,
+    "quarterOfCoverage": 1890,
+    "earningsTest": {
+      "underFullRetirementAge": {
+        "monthly": 2040,
+        "annual": 24480,
+        "withholding": "$1 of benefits withheld for every $2 of earnings above the limit"
+      },
+      "yearReachingFullRetirementAge": {
+        "monthly": 5430,
+        "annual": 65160,
+        "withholding": "$1 of benefits withheld for every $3 of earnings above the limit, counting only months before full retirement age"
+      }
+    }
+  },
+  "medicare": {
+    "source": "cms-2026-premiums",
+    "notes": "partBTotalMonthlyPremium carries the CMS-published total premium for each tier. partBMonthlySurcharge is the engine-facing figure derived from the statutory 35/50/65/80/85 percent cost-sharing multipliers; it differs from the CMS-published surcharge by $0.10 in the fourth tier (CMS publishes $446.30). IRMAA uses a two-year MAGI lookback: 2026 premiums key off 2024 MAGI.",
+    "partBMonthlyPremium": 202.9,
+    "partBAnnualDeductible": 283,
+    "partAInpatientDeductible": 1736,
+    "partDMonthlyPremium": 38.99,
+    "irmaaTiers": {
+      "single": [
+        { "magiMin": 109000, "partBMonthlySurcharge": 81.2, "partBTotalMonthlyPremium": 284.1, "partDMonthlySurcharge": 14.5 },
+        { "magiMin": 137000, "partBMonthlySurcharge": 202.9, "partBTotalMonthlyPremium": 405.8, "partDMonthlySurcharge": 37.5 },
+        { "magiMin": 171000, "partBMonthlySurcharge": 324.6, "partBTotalMonthlyPremium": 527.5, "partDMonthlySurcharge": 60.4 },
+        { "magiMin": 205000, "partBMonthlySurcharge": 446.4, "partBTotalMonthlyPremium": 649.2, "partDMonthlySurcharge": 83.3 },
+        { "magiMin": 500000, "partBMonthlySurcharge": 487.0, "partBTotalMonthlyPremium": 689.9, "partDMonthlySurcharge": 91.0 }
+      ],
+      "marriedJoint": [
+        { "magiMin": 218000, "partBMonthlySurcharge": 81.2, "partBTotalMonthlyPremium": 284.1, "partDMonthlySurcharge": 14.5 },
+        { "magiMin": 274000, "partBMonthlySurcharge": 202.9, "partBTotalMonthlyPremium": 405.8, "partDMonthlySurcharge": 37.5 },
+        { "magiMin": 342000, "partBMonthlySurcharge": 324.6, "partBTotalMonthlyPremium": 527.5, "partDMonthlySurcharge": 60.4 },
+        { "magiMin": 410000, "partBMonthlySurcharge": 446.4, "partBTotalMonthlyPremium": 649.2, "partDMonthlySurcharge": 83.3 },
+        { "magiMin": 750000, "partBMonthlySurcharge": 487.0, "partBTotalMonthlyPremium": 689.9, "partDMonthlySurcharge": 91.0 }
+      ]
+    }
+  },
+  "contributionLimits": {
+    "employerPlans": {
+      "source": "irs-notice-2025-67",
+      "note": "Applies to 401(k), 403(b), governmental 457(b) and the federal Thrift Savings Plan.",
+      "electiveDeferral": 24500,
+      "catchUpAge50": 8000,
+      "catchUpAge60To63": 11250,
+      "totalAnnualAdditions": 72000,
+      "annualCompensationLimit": 360000,
+      "highlyCompensatedThreshold": 160000,
+      "definedBenefitLimit": 290000
+    },
+    "ira": {
+      "source": "irs-notice-2025-67",
+      "contribution": 7500,
+      "catchUpAge50": 1100
+    },
+    "simple": {
+      "source": "irs-notice-2025-67",
+      "deferral": 17000,
+      "deferralHigherLimitPlans": 18100,
+      "catchUpAge50": 4000,
+      "catchUpAge60To63": 5250
+    },
+    "hsa": {
+      "source": "irs-rev-proc-2025-19",
+      "selfOnly": 4400,
+      "family": 8750,
+      "catchUpAge55": 1000,
+      "catchUpSource": "irs-pub-969",
+      "catchUpNote": "The age-55 HSA catch-up is fixed at $1,000 by statute and is not inflation-indexed."
+    },
+    "hdhp": {
+      "source": "irs-rev-proc-2025-19",
+      "minimumDeductibleSelfOnly": 1700,
+      "minimumDeductibleFamily": 3400,
+      "maximumOutOfPocketSelfOnly": 8500,
+      "maximumOutOfPocketFamily": 17000
+    },
+    "healthFsa": {
+      "source": "irs-rev-proc-2025-32",
+      "salaryReductionLimit": 3400,
+      "maximumCarryover": 680
+    }
+  },
+  "phaseOuts": {
+    "rothIra": {
+      "source": "irs-notice-2025-67",
+      "note": "Modified AGI range over which the annual Roth IRA contribution limit phases down to zero.",
+      "single": { "start": 153000, "end": 168000 },
+      "marriedJoint": { "start": 242000, "end": 252000 },
+      "marriedSeparate": { "start": 0, "end": 10000 }
+    },
+    "traditionalIraDeduction": {
+      "source": "irs-notice-2025-67",
+      "note": "Applies only when the taxpayer (or their spouse) is covered by a workplace retirement plan.",
+      "singleCovered": { "start": 81000, "end": 91000 },
+      "marriedJointContributorCovered": { "start": 129000, "end": 149000 },
+      "marriedJointSpouseCoveredContributorNot": { "start": 242000, "end": 252000 },
+      "marriedSeparateCovered": { "start": 0, "end": 10000 }
+    },
+    "saversCredit": {
+      "source": "irs-notice-2025-67",
+      "note": "Maximum AGI at which any Saver's Credit is available.",
+      "marriedJoint": 80500,
+      "headOfHousehold": 60375,
+      "singleOrMarriedSeparate": 40250
+    }
+  },
+  "rmd": {
+    "source": "irs-td-10001",
+    "note": "The applicable age is the age at which required minimum distributions begin. Roth IRAs require no distributions during the owner's lifetime, and since 2024 neither do designated Roth accounts in 401(k) and 403(b) plans.",
+    "applicableAges": [
+      { "bornFrom": 1951, "bornTo": 1959, "age": 73 },
+      { "bornFrom": 1960, "bornTo": null, "age": 75 }
+    ],
+    "requiredBeginningDate": "April 1 of the year after the year the applicable age is reached; every later year's distribution is due by December 31.",
+    "rothIraOwnerDistributionsRequired": false,
+    "designatedRothAccountDistributionsRequired": false
+  },
+  "retirementContributionLimitDefaults": {
+    "employee401k": 24500
+  },
+  "states": {
+    "NONE": { "kind": "flat", "rate": 0 },
+    "PA": { "kind": "flat", "rate": 0.0307 },
+    "IL": { "kind": "flat", "rate": 0.0495 },
+    "MA": { "kind": "flat", "rate": 0.05 },
+    "VA": { "kind": "flat", "rate": 0.0575 },
+    "CA": {
+      "kind": "brackets",
+      "brackets": {
+        "single": [
+          { "min": 0, "rate": 0.01 },
+          { "min": 10756, "rate": 0.02 },
+          { "min": 25499, "rate": 0.04 },
+          { "min": 40245, "rate": 0.06 },
+          { "min": 55866, "rate": 0.08 },
+          { "min": 70606, "rate": 0.093 },
+          { "min": 360659, "rate": 0.103 },
+          { "min": 432787, "rate": 0.113 },
+          { "min": 721314, "rate": 0.123 },
+          { "min": 1000000, "rate": 0.133 }
+        ],
+        "marriedJoint": [
+          { "min": 0, "rate": 0.01 },
+          { "min": 21512, "rate": 0.02 },
+          { "min": 50998, "rate": 0.04 },
+          { "min": 80490, "rate": 0.06 },
+          { "min": 111732, "rate": 0.08 },
+          { "min": 141732, "rate": 0.093 },
+          { "min": 721318, "rate": 0.103 },
+          { "min": 865574, "rate": 0.113 },
+          { "min": 1000000, "rate": 0.123 },
+          { "min": 1442628, "rate": 0.133 }
+        ]
+      }
+    },
+    "NY": {
+      "kind": "brackets",
+      "brackets": {
+        "single": [
+          { "min": 0, "rate": 0.04 },
+          { "min": 8500, "rate": 0.045 },
+          { "min": 11700, "rate": 0.0525 },
+          { "min": 13900, "rate": 0.055 },
+          { "min": 80650, "rate": 0.06 },
+          { "min": 215400, "rate": 0.0685 },
+          { "min": 1077550, "rate": 0.0965 },
+          { "min": 5000000, "rate": 0.103 },
+          { "min": 25000000, "rate": 0.109 }
+        ],
+        "marriedJoint": [
+          { "min": 0, "rate": 0.04 },
+          { "min": 17150, "rate": 0.045 },
+          { "min": 23600, "rate": 0.0525 },
+          { "min": 27900, "rate": 0.055 },
+          { "min": 161550, "rate": 0.06 },
+          { "min": 323200, "rate": 0.0685 },
+          { "min": 2155350, "rate": 0.0965 },
+          { "min": 5000000, "rate": 0.103 },
+          { "min": 25000000, "rate": 0.109 }
+        ]
+      }
+    },
+    "NJ": {
+      "kind": "brackets",
+      "brackets": {
+        "single": [
+          { "min": 0, "rate": 0.014 },
+          { "min": 20000, "rate": 0.0175 },
+          { "min": 35000, "rate": 0.035 },
+          { "min": 40000, "rate": 0.05525 },
+          { "min": 75000, "rate": 0.0637 },
+          { "min": 500000, "rate": 0.0897 },
+          { "min": 1000000, "rate": 0.1075 }
+        ],
+        "marriedJoint": [
+          { "min": 0, "rate": 0.014 },
+          { "min": 20000, "rate": 0.0175 },
+          { "min": 50000, "rate": 0.0245 },
+          { "min": 70000, "rate": 0.035 },
+          { "min": 80000, "rate": 0.05525 },
+          { "min": 150000, "rate": 0.0637 },
+          { "min": 500000, "rate": 0.0897 },
+          { "min": 1000000, "rate": 0.1075 }
+        ]
+      }
+    },
+    "OR": {
+      "kind": "brackets",
+      "brackets": {
+        "single": [
+          { "min": 0, "rate": 0.0475 },
+          { "min": 4400, "rate": 0.0675 },
+          { "min": 11050, "rate": 0.0875 },
+          { "min": 125000, "rate": 0.099 }
+        ],
+        "marriedJoint": [
+          { "min": 0, "rate": 0.0475 },
+          { "min": 8800, "rate": 0.0675 },
+          { "min": 22100, "rate": 0.0875 },
+          { "min": 250000, "rate": 0.099 }
+        ]
+      }
+    },
+    "MN": {
+      "kind": "brackets",
+      "brackets": {
+        "single": [
+          { "min": 0, "rate": 0.0535 },
+          { "min": 32570, "rate": 0.068 },
+          { "min": 106990, "rate": 0.0785 },
+          { "min": 198630, "rate": 0.0985 }
+        ],
+        "marriedJoint": [
+          { "min": 0, "rate": 0.0535 },
+          { "min": 47620, "rate": 0.068 },
+          { "min": 189180, "rate": 0.0785 },
+          { "min": 330410, "rate": 0.0985 }
+        ]
+      }
+    }
+  }
+}

@@ -1,0 +1,163 @@
+specification: API Commons Plans
+specificationVersion: '0.1'
+provider: Planomy
+providerId: planomy-tax-data
+generated: '2026-08-09'
+method: searched
+created: '2026-08-09'
+modified: '2026-08-09'
+sources:
+  - https://planomy.net/pricing
+  - https://planomy.net/data/
+tags:
+  - Personal Finance
+  - Retirement
+  - Tax
+description: >-
+  Two things are priced differently here and it matters. The tax-data JSON API is free, keyless and
+  unmetered — there is no plan, no quota and no sign-up, and nothing about it is sold. The paid plans
+  below belong to the Planomy planner application, which is a separate consumer product with an
+  optional account. A consumer of the API never encounters them.
+plans:
+  - id: planomy-data-api
+    name: Tax Data JSON API
+    type: free
+    description: >-
+      Both data endpoints. No key, no sign-up, no quota, no account. Figures are US federal
+      public-domain data; a link back to https://planomy.net/data/ is appreciated but not required.
+    url: https://planomy.net/data/
+    entries:
+      - label: API requests
+        name: api_requests
+        type: unlimited
+        metric: request
+        limit: -1
+        timeFrame: month
+        price: 0
+        currency: USD
+        note: >-
+          No published limit. Static files behind a CDN; the docs note that abusive traffic can still
+          be throttled at the edge.
+  - id: planomy-embed
+    name: Embeddable calculator widgets
+    type: free
+    description: >-
+      The three /embed/ widgets, free on any site including commercial ones, provided the visible
+      "Powered by Planomy" attribution link remains.
+    url: https://planomy.net/embed/
+    entries:
+      - label: Widget embeds
+        name: widget_embeds
+        type: unlimited
+        metric: embed
+        limit: -1
+        timeFrame: month
+        price: 0
+        currency: USD
+  - id: planomy-free
+    name: Free (planner)
+    type: free
+    description: >-
+      The complete planner, not a trial — net-worth projections and scenarios, charts and spending
+      analysis, every calculator, plan download and restore, no ads and no tracking. An account is
+      optional.
+    url: https://planomy.net/pricing
+    entries:
+      - label: Monthly price
+        name: subscription
+        type: recurring
+        metric: month
+        limit: 1
+        timeFrame: month
+        price: 0
+        currency: USD
+      - label: Synced plans (with optional account)
+        name: synced_plans
+        type: quota
+        metric: plan
+        limit: 1
+        timeFrame: month
+        price: 0
+        currency: USD
+      - label: AI assistant messages
+        name: ai_messages
+        type: quota
+        metric: message
+        limit: 5
+        timeFrame: week
+        price: 0
+        currency: USD
+  - id: planomy-plus
+    name: Plus (planner)
+    type: subscription
+    description: >-
+      Everything in Free, plus unlimited synced plans across devices, 50 AI assistant credits a month,
+      bank sync via Plaid and priority support. Requires an account. Introductory launch pricing.
+    url: https://planomy.net/pricing
+    entries:
+      - label: Monthly price
+        name: subscription_monthly
+        type: recurring
+        metric: month
+        limit: 1
+        timeFrame: month
+        price: 6
+        currency: USD
+      - label: Annual price
+        name: subscription_annual
+        type: recurring
+        metric: year
+        limit: 1
+        timeFrame: year
+        price: 60
+        currency: USD
+      - label: Synced plans
+        name: synced_plans
+        type: unlimited
+        metric: plan
+        limit: -1
+        timeFrame: month
+        price: 0
+        currency: USD
+      - label: AI assistant credits
+        name: ai_messages
+        type: quota
+        metric: message
+        limit: 50
+        timeFrame: month
+        price: 0
+        currency: USD
+  - id: planomy-ai-credit-packs
+    name: AI credit packs
+    type: one-time
+    description: One-time top-up packs of AI assistant credits.
+    url: https://planomy.net/pricing
+    entries:
+      - label: 10 credits
+        name: credits_10
+        type: one-time
+        metric: credit
+        limit: 10
+        timeFrame: once
+        price: 1
+        currency: USD
+      - label: 50 credits
+        name: credits_50
+        type: one-time
+        metric: credit
+        limit: 50
+        timeFrame: once
+        price: 4
+        currency: USD
+      - label: 100 credits
+        name: credits_100
+        type: one-time
+        metric: credit
+        limit: 100
+        timeFrame: once
+        price: 7
+        currency: USD
+terms:
+  cancellation: Cancel any time from the billing portal; no contract. Downgrading to Free keeps all planning features.
+  refunds: No partial refunds for unused time — see https://planomy.net/legal/terms.
+  trial: None — the Free plan is the full planner rather than a time-limited trial.

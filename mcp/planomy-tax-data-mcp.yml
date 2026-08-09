@@ -1,0 +1,57 @@
+generated: '2026-08-09'
+method: derived
+status: candidate
+source: openapi/planomy-tax-data-openapi.yml
+description: >-
+  Planomy ships no MCP server. Probed for one on 2026-08-09 — https://planomy.net/mcp and
+  /.well-known/mcp.json both 404, no server is referenced from https://planomy.net/data/, from
+  llms.txt, or from any registry, and no npm package under the planomy name exists. The tools below
+  are an API Evangelist-derived candidate surface, one per real OpenAPI operation, not something
+  Planomy publishes. Do not read this as an MCP claim on the provider's behalf.
+searched:
+  - {url: 'https://planomy.net/mcp', http_status: 404}
+  - {url: 'https://planomy.net/.well-known/mcp.json', http_status: 404}
+  - {url: 'https://registry.npmjs.org/-/v1/search?text=planomy', http_status: 200, result: 0 packages}
+  - {source: 'https://planomy.net/llms.txt', result: no MCP endpoint referenced}
+server:
+  name: planomy-tax-data
+  transport: null
+  url: null
+  published: false
+tools:
+  - name: list_tax_data_years
+    description: >-
+      List the tax years Planomy has published a dataset for, with the latest year and the URL
+      template used to resolve a year to its file.
+    source_operation: openapi/planomy-tax-data-openapi.yml#getTaxDataIndex
+    http: GET https://planomy.net/tax-data/index.json
+    input_schema:
+      type: object
+      properties: {}
+      required: []
+    read_only: true
+  - name: get_tax_data_year
+    description: >-
+      Get the complete US tax and retirement dataset for one year — federal brackets and standard
+      deduction, FICA rates and wage base, Social Security COLA and earnings test, Medicare premiums
+      and IRMAA tiers, contribution limits, phase-outs, RMD ages and state presets — with a source
+      citation for every section.
+    source_operation: openapi/planomy-tax-data-openapi.yml#getTaxDataYear
+    http: GET https://planomy.net/tax-data/{year}.json
+    input_schema:
+      type: object
+      properties:
+        year:
+          type: integer
+          description: A four-digit tax year present in the index manifest. Currently only 2026.
+      required: [year]
+    read_only: true
+notes:
+  - >-
+    Every candidate tool is read-only and unauthenticated, which makes this one of the safer APIs to
+    expose to an agent — no credential to leak, no side effect to guard. See
+    agentic-access/planomy-tax-data-agentic-access.yml.
+  - >-
+    An implementer should resolve the year through list_tax_data_years rather than hard-coding it, and
+    should cache on the ETag: the data changes a handful of times a year, driven by IRS, SSA and CMS
+    publication dates.

@@ -1,0 +1,21 @@
+generated: '2026-08-09'
+method: generated
+source: openapi/planomy-tax-data-openapi.yml
+description: >-
+  Packaged agent skills for the Planomy tax-data API. Both are grounded in real operationIds from
+  openapi/planomy-tax-data-openapi.yml; no operation is invented. Planomy publishes no AGENTS.md or
+  skill files of its own — searched 2026-08-09.
+skills:
+  - file: planomy-tax-data-fetch-current-figures.md
+    name: Fetch the current US tax and retirement figures
+    description: >-
+      Resolve the latest published year from the manifest, fetch the dataset, and cache on the ETag.
+    api: openapi/planomy-tax-data-openapi.yml
+    operations: [getTaxDataIndex, getTaxDataYear]
+  - file: planomy-tax-data-cite-a-tax-figure.md
+    name: Cite a tax figure back to its federal source
+    description: >-
+      Look up one figure and resolve its `source` key into the IRS/SSA/CMS citation, with the traps
+      that make a naive read wrong (IRMAA lookback, the $0.10 tier divergence, ten-state coverage).
+    api: openapi/planomy-tax-data-openapi.yml
+    operations: [getTaxDataYear]

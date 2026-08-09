@@ -1,0 +1,604 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://planomy-tax-data.apievangelist.com/json-schema/planomy-tax-data-tax-year-dataset.json",
+  "title": "Planomy Tax Year Dataset",
+  "description": "The complete dataset for one tax year.",
+  "x-provenance": {
+    "generated": "2026-08-09",
+    "method": "derived",
+    "source": "openapi/planomy-tax-data-openapi.yml",
+    "note": "Derived from the API Evangelist OpenAPI, which was itself written from live 200 responses at https://planomy.net/tax-data/. Planomy publishes a prose schema at https://planomy.net/data/#schema but no machine-readable schema."
+  },
+  "type": "object",
+  "required": [
+    "year",
+    "version",
+    "federal",
+    "fica",
+    "socialSecurity",
+    "medicare",
+    "contributionLimits",
+    "phaseOuts",
+    "rmd"
+  ],
+  "properties": {
+    "year": {
+      "type": "integer"
+    },
+    "version": {
+      "type": "string",
+      "description": "Contract version. A breaking change ships under a new value."
+    },
+    "publishedAt": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "lastUpdated": {
+      "type": "string",
+      "format": "date"
+    },
+    "schema": {
+      "type": "string",
+      "format": "uri"
+    },
+    "license": {
+      "type": "string"
+    },
+    "sources": {
+      "type": "object",
+      "description": "Map of source key to citation; every `source` field elsewhere resolves here.",
+      "additionalProperties": {
+        "$ref": "#/$defs/SourceReference"
+      }
+    },
+    "federal": {
+      "type": "object",
+      "properties": {
+        "source": {
+          "type": "string"
+        },
+        "brackets": {
+          "$ref": "#/$defs/BracketSet"
+        },
+        "standardDeduction": {
+          "type": "object",
+          "properties": {
+            "single": {
+              "type": "number"
+            },
+            "marriedJoint": {
+              "type": "number"
+            },
+            "marriedSeparate": {
+              "type": "number"
+            },
+            "headOfHousehold": {
+              "type": "number"
+            }
+          }
+        }
+      }
+    },
+    "fica": {
+      "type": "object",
+      "properties": {
+        "source": {
+          "type": "string"
+        },
+        "socialSecurityRate": {
+          "type": "number"
+        },
+        "socialSecurityWageBase": {
+          "type": "number"
+        },
+        "medicareRate": {
+          "type": "number"
+        },
+        "additionalMedicareRate": {
+          "type": "number"
+        },
+        "additionalMedicareThreshold": {
+          "type": "object",
+          "properties": {
+            "single": {
+              "type": "number"
+            },
+            "marriedJoint": {
+              "type": "number"
+            }
+          }
+        }
+      }
+    },
+    "socialSecurity": {
+      "type": "object",
+      "properties": {
+        "source": {
+          "type": "string"
+        },
+        "colaRate": {
+          "type": "number"
+        },
+        "wageBase": {
+          "type": "number"
+        },
+        "quarterOfCoverage": {
+          "type": "number"
+        },
+        "earningsTest": {
+          "type": "object",
+          "properties": {
+            "underFullRetirementAge": {
+              "$ref": "#/$defs/EarningsTestLimit"
+            },
+            "yearReachingFullRetirementAge": {
+              "$ref": "#/$defs/EarningsTestLimit"
+            }
+          }
+        }
+      }
+    },
+    "medicare": {
+      "type": "object",
+      "properties": {
+        "source": {
+          "type": "string"
+        },
+        "notes": {
+          "type": "string"
+        },
+        "partBMonthlyPremium": {
+          "type": "number"
+        },
+        "partBAnnualDeductible": {
+          "type": "number"
+        },
+        "partAInpatientDeductible": {
+          "type": "number"
+        },
+        "partDMonthlyPremium": {
+          "type": "number"
+        },
+        "irmaaTiers": {
+          "type": "object",
+          "properties": {
+            "single": {
+              "type": "array",
+              "items": {
+                "$ref": "#/$defs/IrmaaTier"
+              }
+            },
+            "marriedJoint": {
+              "type": "array",
+              "items": {
+                "$ref": "#/$defs/IrmaaTier"
+              }
+            }
+          }
+        }
+      }
+    },
+    "contributionLimits": {
+      "type": "object",
+      "properties": {
+        "employerPlans": {
+          "type": "object",
+          "description": "401(k), 403(b), governmental 457(b) and the federal Thrift Savings Plan.",
+          "properties": {
+            "source": {
+              "type": "string"
+            },
+            "note": {
+              "type": "string"
+            },
+            "electiveDeferral": {
+              "type": "number"
+            },
+            "catchUpAge50": {
+              "type": "number"
+            },
+            "catchUpAge60To63": {
+              "type": "number"
+            },
+            "totalAnnualAdditions": {
+              "type": "number"
+            },
+            "annualCompensationLimit": {
+              "type": "number"
+            },
+            "highlyCompensatedThreshold": {
+              "type": "number"
+            },
+            "definedBenefitLimit": {
+              "type": "number"
+            }
+          }
+        },
+        "ira": {
+          "type": "object",
+          "properties": {
+            "source": {
+              "type": "string"
+            },
+            "contribution": {
+              "type": "number"
+            },
+            "catchUpAge50": {
+              "type": "number"
+            }
+          }
+        },
+        "simple": {
+          "type": "object",
+          "properties": {
+            "source": {
+              "type": "string"
+            },
+            "deferral": {
+              "type": "number"
+            },
+            "deferralHigherLimitPlans": {
+              "type": "number"
+            },
+            "catchUpAge50": {
+              "type": "number"
+            },
+            "catchUpAge60To63": {
+              "type": "number"
+            }
+          }
+        },
+        "hsa": {
+          "type": "object",
+          "properties": {
+            "source": {
+              "type": "string"
+            },
+            "selfOnly": {
+              "type": "number"
+            },
+            "family": {
+              "type": "number"
+            },
+            "catchUpAge55": {
+              "type": "number"
+            },
+            "catchUpSource": {
+              "type": "string"
+            },
+            "catchUpNote": {
+              "type": "string"
+            }
+          }
+        },
+        "hdhp": {
+          "type": "object",
+          "properties": {
+            "source": {
+              "type": "string"
+            },
+            "minimumDeductibleSelfOnly": {
+              "type": "number"
+            },
+            "minimumDeductibleFamily": {
+              "type": "number"
+            },
+            "maximumOutOfPocketSelfOnly": {
+              "type": "number"
+            },
+            "maximumOutOfPocketFamily": {
+              "type": "number"
+            }
+          }
+        },
+        "healthFsa": {
+          "type": "object",
+          "properties": {
+            "source": {
+              "type": "string"
+            },
+            "salaryReductionLimit": {
+              "type": "number"
+            },
+            "maximumCarryover": {
+              "type": "number"
+            }
+          }
+        }
+      }
+    },
+    "phaseOuts": {
+      "type": "object",
+      "properties": {
+        "rothIra": {
+          "type": "object",
+          "properties": {
+            "source": {
+              "type": "string"
+            },
+            "note": {
+              "type": "string"
+            },
+            "single": {
+              "$ref": "#/$defs/PhaseOutRange"
+            },
+            "marriedJoint": {
+              "$ref": "#/$defs/PhaseOutRange"
+            },
+            "marriedSeparate": {
+              "$ref": "#/$defs/PhaseOutRange"
+            }
+          }
+        },
+        "traditionalIraDeduction": {
+          "type": "object",
+          "properties": {
+            "source": {
+              "type": "string"
+            },
+            "note": {
+              "type": "string"
+            },
+            "singleCovered": {
+              "$ref": "#/$defs/PhaseOutRange"
+            },
+            "marriedJointContributorCovered": {
+              "$ref": "#/$defs/PhaseOutRange"
+            },
+            "marriedJointSpouseCoveredContributorNot": {
+              "$ref": "#/$defs/PhaseOutRange"
+            },
+            "marriedSeparateCovered": {
+              "$ref": "#/$defs/PhaseOutRange"
+            }
+          }
+        },
+        "saversCredit": {
+          "type": "object",
+          "properties": {
+            "source": {
+              "type": "string"
+            },
+            "note": {
+              "type": "string"
+            },
+            "marriedJoint": {
+              "type": "number"
+            },
+            "headOfHousehold": {
+              "type": "number"
+            },
+            "singleOrMarriedSeparate": {
+              "type": "number"
+            }
+          }
+        }
+      }
+    },
+    "rmd": {
+      "type": "object",
+      "properties": {
+        "source": {
+          "type": "string"
+        },
+        "note": {
+          "type": "string"
+        },
+        "applicableAges": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "bornFrom": {
+                "type": "integer"
+              },
+              "bornTo": {
+                "type": [
+                  "integer",
+                  "null"
+                ]
+              },
+              "age": {
+                "type": "integer"
+              }
+            }
+          }
+        },
+        "requiredBeginningDate": {
+          "type": "string"
+        },
+        "rothIraOwnerDistributionsRequired": {
+          "type": "boolean"
+        },
+        "designatedRothAccountDistributionsRequired": {
+          "type": "boolean"
+        }
+      }
+    },
+    "retirementContributionLimitDefaults": {
+      "type": "object",
+      "description": "Convenience defaults the Planomy planner seeds its inputs from.",
+      "properties": {
+        "employee401k": {
+          "type": "number"
+        }
+      }
+    },
+    "states": {
+      "type": "object",
+      "description": "State income-tax presets keyed by USPS code, plus the pseudo-key `NONE`. Observed keys in the 2026 dataset - NONE, PA, IL, MA, VA, CA, NY, NJ, OR, MN.",
+      "additionalProperties": {
+        "$ref": "#/$defs/StateTaxPreset"
+      }
+    }
+  },
+  "$defs": {
+    "TaxDataIndex": {
+      "type": "object",
+      "description": "Manifest of the published dataset years.",
+      "required": [
+        "latest",
+        "years"
+      ],
+      "properties": {
+        "latest": {
+          "type": "integer",
+          "description": "The most recent published tax year."
+        },
+        "years": {
+          "type": "array",
+          "description": "Every tax year with a published dataset file.",
+          "items": {
+            "type": "integer"
+          }
+        },
+        "schema": {
+          "type": "string",
+          "format": "uri",
+          "description": "URL of the prose field-level schema."
+        },
+        "documentation": {
+          "type": "string",
+          "format": "uri"
+        },
+        "yearUrlTemplate": {
+          "type": "string",
+          "description": "RFC 6570-style template resolving a year to its dataset URL."
+        },
+        "license": {
+          "type": "string"
+        }
+      }
+    },
+    "SourceReference": {
+      "type": "object",
+      "description": "A citation for one upstream agency document.",
+      "required": [
+        "title",
+        "publisher",
+        "url"
+      ],
+      "properties": {
+        "title": {
+          "type": "string"
+        },
+        "publisher": {
+          "type": "string",
+          "description": "Observed values: Internal Revenue Service, Social Security Administration, Centers for Medicare & Medicaid Services."
+        },
+        "url": {
+          "type": "string",
+          "format": "uri"
+        },
+        "retrieved": {
+          "type": "string",
+          "format": "date",
+          "description": "Date Planomy last checked the figure against this document."
+        }
+      }
+    },
+    "Bracket": {
+      "type": "object",
+      "description": "One marginal rate band; `min` is the lower bound of taxable income it applies from.",
+      "required": [
+        "min",
+        "rate"
+      ],
+      "properties": {
+        "min": {
+          "type": "number",
+          "description": "Lower bound in US dollars."
+        },
+        "rate": {
+          "type": "number",
+          "description": "Marginal rate as a decimal fraction."
+        }
+      }
+    },
+    "BracketSet": {
+      "type": "object",
+      "properties": {
+        "single": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/Bracket"
+          }
+        },
+        "marriedJoint": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/Bracket"
+          }
+        }
+      }
+    },
+    "PhaseOutRange": {
+      "type": "object",
+      "description": "Modified-AGI range over which a benefit phases down to zero.",
+      "properties": {
+        "start": {
+          "type": "number"
+        },
+        "end": {
+          "type": "number"
+        }
+      }
+    },
+    "IrmaaTier": {
+      "type": "object",
+      "description": "One income-related monthly adjustment tier, keyed off MAGI from two years prior.",
+      "properties": {
+        "magiMin": {
+          "type": "number"
+        },
+        "partBMonthlySurcharge": {
+          "type": "number"
+        },
+        "partBTotalMonthlyPremium": {
+          "type": "number"
+        },
+        "partDMonthlySurcharge": {
+          "type": "number"
+        }
+      }
+    },
+    "StateTaxPreset": {
+      "type": "object",
+      "description": "A state income-tax preset. `kind` is `flat` (with a single `rate`) or `brackets` (with a `brackets` set). The key `NONE` models a state with no income tax.",
+      "required": [
+        "kind"
+      ],
+      "properties": {
+        "kind": {
+          "type": "string",
+          "enum": [
+            "flat",
+            "brackets"
+          ]
+        },
+        "rate": {
+          "type": "number",
+          "description": "Present when kind is flat."
+        },
+        "brackets": {
+          "$ref": "#/$defs/BracketSet"
+        }
+      }
+    },
+    "EarningsTestLimit": {
+      "type": "object",
+      "properties": {
+        "monthly": {
+          "type": "number"
+        },
+        "annual": {
+          "type": "number"
+        },
+        "withholding": {
+          "type": "string",
+          "description": "Prose statement of the withholding ratio applied above the limit."
+        }
+      }
+    }
+  }
+}

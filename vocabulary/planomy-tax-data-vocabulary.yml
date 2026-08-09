@@ -1,0 +1,165 @@
+generated: '2026-08-09'
+method: derived
+source: >-
+  examples/planomy-tax-data-2026.json (live payload, 2026-08-09) and the prose schema at
+  https://planomy.net/data/#schema
+description: >-
+  Controlled vocabulary of the terms this API uses on the wire. Every term below appears as a real
+  field name, key or enumerated value in the published dataset — this is a reading of the payload,
+  not a proposed taxonomy. Definitions are grounded in the US federal documents the dataset cites.
+terms:
+  - term: electiveDeferral
+    domain: retirement savings
+    definition: >-
+      The annual limit on employee salary-deferral contributions to a 401(k), 403(b), governmental
+      457(b) or the federal Thrift Savings Plan.
+    path: contributionLimits.employerPlans.electiveDeferral
+    source: irs-notice-2025-67
+  - term: catchUpAge50
+    domain: retirement savings
+    definition: Additional contribution room available from the year the participant turns 50.
+    path: contributionLimits.employerPlans.catchUpAge50
+  - term: catchUpAge60To63
+    domain: retirement savings
+    definition: >-
+      The higher "super catch-up" available only in the years the participant is aged 60 to 63,
+      introduced by SECURE 2.0.
+    path: contributionLimits.employerPlans.catchUpAge60To63
+  - term: totalAnnualAdditions
+    domain: retirement savings
+    definition: The IRC §415(c) limit on all contributions to a participant's account for the year.
+    path: contributionLimits.employerPlans.totalAnnualAdditions
+  - term: highlyCompensatedThreshold
+    domain: retirement savings
+    definition: Compensation at or above which an employee is a highly compensated employee for nondiscrimination testing.
+    path: contributionLimits.employerPlans.highlyCompensatedThreshold
+  - term: definedBenefitLimit
+    domain: retirement savings
+    definition: The IRC §415(b) annual benefit limit for a defined-benefit plan.
+    path: contributionLimits.employerPlans.definedBenefitLimit
+  - term: deferralHigherLimitPlans
+    domain: retirement savings
+    definition: >-
+      The raised SIMPLE deferral limit available to plans that elect the higher limit under SECURE 2.0.
+    path: contributionLimits.simple.deferralHigherLimitPlans
+  - term: hsa
+    domain: health coverage
+    definition: Health Savings Account — contribution limits split self-only and family, with a statutory age-55 catch-up.
+    path: contributionLimits.hsa
+    source: irs-rev-proc-2025-19
+  - term: hdhp
+    domain: health coverage
+    definition: >-
+      High Deductible Health Plan — the minimum deductible and maximum out-of-pocket thresholds a plan
+      must meet for its holder to be HSA-eligible.
+    path: contributionLimits.hdhp
+  - term: healthFsa
+    domain: health coverage
+    definition: Health Flexible Spending Arrangement — salary-reduction limit and maximum carryover.
+    path: contributionLimits.healthFsa
+    source: irs-rev-proc-2025-32
+  - term: irmaa
+    domain: health coverage
+    definition: >-
+      Income-Related Monthly Adjustment Amount — the Medicare Part B and Part D surcharges applied
+      above income thresholds. Uses a two-year MAGI lookback: 2026 premiums key off 2024 MAGI.
+    path: medicare.irmaaTiers
+    source: cms-2026-premiums
+  - term: magiMin
+    domain: health coverage
+    definition: The lower bound of modified adjusted gross income at which an IRMAA tier begins.
+    path: medicare.irmaaTiers.*[].magiMin
+  - term: partBTotalMonthlyPremium
+    domain: health coverage
+    definition: >-
+      The CMS-published total Part B premium for a tier — standard premium plus surcharge. Preferred
+      over partBMonthlySurcharge when matching CMS exactly.
+    path: medicare.irmaaTiers.*[].partBTotalMonthlyPremium
+  - term: colaRate
+    domain: social security
+    definition: The annual cost-of-living adjustment applied to Social Security benefits.
+    path: socialSecurity.colaRate
+    source: ssa-cola-2026
+  - term: wageBase
+    domain: social security
+    definition: >-
+      The maximum earnings subject to the Social Security portion of payroll tax. Mirrored at
+      fica.socialSecurityWageBase.
+    path: socialSecurity.wageBase
+  - term: quarterOfCoverage
+    domain: social security
+    definition: The earnings needed to be credited with one quarter of coverage toward benefit eligibility.
+    path: socialSecurity.quarterOfCoverage
+  - term: earningsTest
+    domain: social security
+    definition: >-
+      The retirement earnings test — limits above which benefits are withheld for a beneficiary below
+      full retirement age, with a separate higher limit in the year full retirement age is reached.
+    path: socialSecurity.earningsTest
+  - term: additionalMedicareRate
+    domain: payroll tax
+    definition: The extra Medicare tax rate applied to wages above the additional Medicare threshold.
+    path: fica.additionalMedicareRate
+    source: irs-topic-751
+  - term: standardDeduction
+    domain: income tax
+    definition: The federal standard deduction, given per filing status.
+    path: federal.standardDeduction
+    source: irs-rev-proc-2025-32
+  - term: bracket
+    domain: income tax
+    definition: >-
+      A marginal rate band expressed as {min, rate}. `min` is the lower bound; the upper bound is the
+      next entry's `min`, and the final entry is open-ended.
+    path: federal.brackets.*[]
+  - term: phaseOut
+    domain: retirement savings
+    definition: >-
+      The modified-AGI range {start, end} over which a benefit reduces to zero — used for Roth IRA
+      contributions and traditional IRA deductibility.
+    path: phaseOuts
+  - term: saversCredit
+    domain: retirement savings
+    definition: Maximum AGI at which any Saver's Credit is available, per filing status.
+    path: phaseOuts.saversCredit
+  - term: rmd
+    domain: retirement savings
+    definition: >-
+      Required Minimum Distribution — the applicable age at which distributions must begin, and the
+      required beginning date rule.
+    path: rmd
+    source: irs-td-10001
+  - term: applicableAge
+    domain: retirement savings
+    definition: >-
+      The age at which RMDs begin, keyed by birth-year range. 73 for those born 1951–1959; 75 from
+      1960 onward.
+    path: rmd.applicableAges[].age
+  - term: requiredBeginningDate
+    domain: retirement savings
+    definition: >-
+      April 1 of the year after the applicable age is reached; every later year's distribution is due
+      by December 31.
+    path: rmd.requiredBeginningDate
+enumerations:
+  - name: filingStatus
+    values: [single, marriedJoint, marriedSeparate, headOfHousehold]
+    note: Not every section carries all four; brackets and IRMAA tiers carry only single and marriedJoint.
+  - name: stateTaxKind
+    values: [flat, brackets]
+    path: states.*.kind
+  - name: stateKey
+    values: [NONE, PA, IL, MA, VA, CA, NY, NJ, OR, MN]
+    note: >-
+      Ten presets, not fifty states. `NONE` is a pseudo-key meaning no state income tax; an absent
+      state is unmodelled, not zero.
+  - name: publisher
+    values:
+      - Internal Revenue Service
+      - Social Security Administration
+      - Centers for Medicare & Medicaid Services
+    path: sources.*.publisher
+units:
+  money: US dollars as bare numbers — no symbol, no thousands separator.
+  rates: Decimal fractions — 0.062 means 6.2%.
+  dates: ISO 8601; publishedAt is a date-time, lastUpdated and retrieved are dates.

@@ -1,0 +1,56 @@
+generated: '2026-08-09'
+method: searched
+source: https://planomy.net/data/
+versioning:
+  scheme: uri-path + payload field
+  current: v1
+  current_dataset_year: 2026
+  docs: https://planomy.net/data/
+  detail: >-
+    The tax year is a path segment (/tax-data/{year}.json) and the contract version is a `version`
+    field inside the document (currently "v1"). /tax-data/index.json is the manifest — `latest`,
+    `years[]` and `yearUrlTemplate` — and is the supported way to discover a new year.
+  compatibility_policy: >-
+    "Stable, additive contract: fields are added, never silently renamed or repurposed. A breaking
+    change would ship under a new `version`." — https://planomy.net/data/
+release_cadence:
+  scheme: upstream-driven
+  statement: >-
+    "Whenever the agencies publish. Retirement plan limits normally arrive in late October or early
+    November for the following year, HSA figures in the spring, and Medicare premiums in November."
+  dataset_published_at: '2026-07-03T00:00:00.000Z'
+  dataset_last_updated: '2026-07-27'
+  freshness_signal: >-
+    Every document carries `publishedAt` and `lastUpdated`, and every citation in `sources` carries its
+    own `retrieved` date. A consumer can therefore verify staleness per figure, not just per file —
+    an unusually good freshness contract for an open dataset.
+deprecation:
+  policy_url: null
+  policy_published: false
+  sunset_header: false
+  deprecation_header: false
+  detail: >-
+    No RFC 8594 Sunset/Deprecation header support and no written deprecation or retention policy. The
+    additive-contract statement implies old years stay reachable, but nothing commits to how long a
+    past year's file is served, or what notice a `version` bump would carry.
+sla:
+  url: null
+  uptime_target: null
+  detail: No SLA or uptime commitment is published. The dataset is offered free and without warranty.
+status_page:
+  url: null
+  detail: >-
+    No status page. https://planomy.net/status returns 404 and none is referenced from the docs,
+    llms.txt, robots.txt or sitemap. For a CDN-fronted static file this is a low-cost gap.
+changelog:
+  url: null
+  detail: >-
+    No dated changelog page (https://planomy.net/changelog returns 404). The only change signal is the
+    `lastUpdated` field on the dataset and the "last verified" date on the /data/ page (27 July 2026).
+    A consumer cannot see what changed between two revisions of the same year, only that something did.
+deprecated_operations: []
+gaps:
+  - No status page.
+  - No dated changelog — `lastUpdated` moves, but the diff is not published.
+  - No deprecation/retention policy for superseded years or a future `version` bump.
+  - No Sunset or Deprecation header support.

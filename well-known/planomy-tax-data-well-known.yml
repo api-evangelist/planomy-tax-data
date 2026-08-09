@@ -1,0 +1,69 @@
+generated: '2026-08-09'
+method: probed
+source: live GET of the RFC 8615 well-known surface on planomy.net
+host: https://planomy.net
+summary: >-
+  Planomy publishes no /.well-known/ surface at all. Every canonical path returns a hard 404 with an
+  HTML body — including RFC 9116 security.txt, which is the one an open, keyless dataset most benefits
+  from. The origin is a clean 404 (no SPA catch-all answering 200), so these are true negatives rather
+  than a discovery failure on our side.
+documents:
+  - path: /.well-known/security.txt
+    spec: RFC 9116
+    status: 404
+  - path: /.well-known/openid-configuration
+    spec: OpenID Connect Discovery 1.0
+    status: 404
+    note: Expected — the data API is keyless and there is no OIDC provider.
+  - path: /.well-known/oauth-authorization-server
+    spec: RFC 8414
+    status: 404
+    note: Expected — no OAuth.
+  - path: /.well-known/api-catalog
+    spec: RFC 9727
+    status: 404
+  - path: /.well-known/ai-plugin.json
+    status: 404
+  - path: /.well-known/agent-card.json
+    spec: A2A 1.0.0
+    status: 404
+  - path: /.well-known/agent.json
+    spec: A2A pre-0.3 legacy
+    status: 404
+  - path: /.well-known/mcp.json
+    status: 404
+adjacent_discovery:
+  note: >-
+    Planomy does publish agent-facing discovery, just not under /.well-known/. These paths returned 200
+    and are the real machine-readable surface.
+  documents:
+    - path: /llms.txt
+      status: 200
+      content_type: text/plain
+      bytes: 21000
+      file: ../llms/planomy-tax-data-llms.txt
+    - path: /llms-full.txt
+      status: 200
+      note: Full text of every guide and calculator. Not committed here (gitignored).
+    - path: /tax-data/index.json
+      status: 200
+      content_type: application/json
+      note: Dataset manifest — the de facto API catalog for this provider.
+    - path: /robots.txt
+      status: 200
+      note: >-
+        Deliberately permissive and explicitly names answer-engine crawlers (OAI-SearchBot,
+        ChatGPT-User, PerplexityBot, Claude-SearchBot, Googlebot, Bingbot, Applebot) as allowed.
+    - path: /sitemap.xml
+      status: 200
+    - path: /feed.xml
+      status: 200
+      note: RSS feed of the guides. Content syndication, not an API event surface.
+gaps:
+  - >-
+    No /.well-known/security.txt. For a public-domain dataset with no auth, a security.txt naming a
+    contact and a policy URL is the cheapest credibility artifact available and would also satisfy the
+    consent/identity signal agents look for.
+  - >-
+    No /.well-known/api-catalog (RFC 9727). /tax-data/index.json already is the catalog in substance —
+    linking it from a well-known path would make it discoverable without reading the docs page.
