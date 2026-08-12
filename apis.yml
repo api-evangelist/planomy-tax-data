@@ -27,52 +27,30 @@ tags:
   - medicare
   - json
 apis:
-  - name: Planomy Tax Data JSON
-    description: >-
-      A free, no-auth JSON dataset of 2026 US tax and retirement figures, served as two static files:
-      a manifest at /tax-data/index.json listing every published year, and one complete document per
-      year at /tax-data/{year}.json. Keyless and unmetered. Responses carry a strong ETag and honour
-      If-None-Match, so the correct client pattern is a conditional GET rather than polling. The
-      documentation states the endpoint sends no Access-Control-Allow-Origin header and should be
-      consumed server-side; as of 2026-08-09 the edge actually returns a wildcard, so simple browser
-      fetches work, though OPTIONS returns 405 so preflighted requests do not. The field-level schema
-      is documented in prose only — there is no provider-published OpenAPI or JSON Schema.
-    humanURL: https://planomy.net/data/
-    baseURL: https://planomy.net
-    tags:
-      - tax
-      - finance
-      - open-data
-      - retirement
-      - government
-      - personal-finance
-      - irs
-      - social-security
-      - medicare
-      - json
-    properties:
-      - type: Documentation
-        url: https://planomy.net/data/
-      - type: APIReference
-        url: https://planomy.net/data/#schema
-      - type: LLMsTxt
-        url: https://planomy.net/llms.txt
-      - type: OpenAPI
-        url: openapi/planomy-tax-data-openapi.yml
-      - type: JSONSchema
-        name: Tax year dataset
-        url: json-schema/planomy-tax-data-tax-year-dataset.json
-      - type: JSONSchema
-        name: Dataset index manifest
-        url: json-schema/planomy-tax-data-index.json
-      - type: Examples
-        name: Live 2026 dataset
-        url: examples/planomy-tax-data-2026.json
-      - type: Examples
-        name: Live dataset index
-        url: examples/planomy-tax-data-index.json
-      - type: Overlay
-        url: overlays/planomy-tax-data-overlay.yaml
+- aid: planomy-tax-data:planomy-tax-data-tax-data-api
+  name: Planomy Tax Data Tax Data API
+  description: Dated, source-attributed US tax and retirement figures.
+  humanURL: https://planomy.net/data/
+  baseURL: https://planomy.net
+  tags:
+  - tax-data
+  properties:
+  - type: OpenAPI
+    url: openapi/planomy-tax-data-tax-data-api-openapi.yml
+  - type: Documentation
+    url: https://planomy.net/data/
+  - type: APIReference
+    url: https://planomy.net/data/#schema
+  - type: LLMsTxt
+    url: https://planomy.net/llms.txt
+  - type: JSONSchema
+    url: json-schema/planomy-tax-data-tax-year-dataset.json
+  - type: JSONSchema
+    url: json-schema/planomy-tax-data-index.json
+  - type: Examples
+    url: examples/planomy-tax-data-2026.json
+  - type: Examples
+    url: examples/planomy-tax-data-index.json
 maintainers:
   - FN: Planomy
     email: support@planomy.net
@@ -83,6 +61,8 @@ generated:
   confidence: 90
   at: '2026-07-28T15:14:23.864Z'
 common:
+- type: Overlay
+  url: overlays/planomy-tax-data-overlay.yaml
 - type: AgenticAccess
   url: agentic-access/planomy-tax-data-agentic-access.yml
 - type: DomainSecurity
