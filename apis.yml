@@ -10,7 +10,7 @@ description: >-
   sign-up and no quota. Its distinguishing feature is provenance: every section carries a source key
   that resolves to a named IRS, SSA, CMS or Federal Register document with the date it was last
   verified, so any single figure can be cited back to the government publication it came from.
-url: https://planomy-tax-data.apievangelist.com/apis.yml
+url: https://raw.githubusercontent.com/api-evangelist/planomy-tax-data/refs/heads/main/apis.yml
 image: https://planomy.net/og/og-home.png
 created: '2026-07-28'
 modified: '2026-08-09'
