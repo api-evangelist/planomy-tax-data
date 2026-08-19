@@ -1,0 +1,354 @@
+{
+  "item": [
+    {
+      "id": "e9c869dd-34ae-49dd-8162-8fdfba195ed3",
+      "name": "tax-data",
+      "description": {
+        "content": "Dated, source-attributed US tax and retirement figures.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "b1f3b8f5-e2b6-41be-adbf-5b2777df5a0d",
+          "name": "List available dataset years",
+          "request": {
+            "name": "List available dataset years",
+            "description": {
+              "content": "Returns the manifest of published dataset years, the latest year, the URL template for resolving a year to its file, the prose schema URL and the licence statement. Call this first so a client can discover new years without hard-coding one.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "tax-data",
+                "index.json"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "ebe52e2c-db61-4980-b0ac-97c488728eca",
+              "name": "The dataset manifest.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "tax-data",
+                    "index.json"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "Strong entity tag; send back as If-None-Match to revalidate.",
+                  "key": "ETag",
+                  "value": "string"
+                },
+                {
+                  "disabled": false,
+                  "description": "Observed: public, max-age=0, must-revalidate",
+                  "key": "Cache-Control",
+                  "value": "string"
+                },
+                {
+                  "disabled": false,
+                  "description": "Observed: * — the endpoint is browser-fetchable cross-origin.",
+                  "key": "Access-Control-Allow-Origin",
+                  "value": "string"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"latest\": 2026,\n  \"years\": [\n    2026\n  ],\n  \"schema\": \"https://planomy.net/data/#schema\",\n  \"documentation\": \"https://planomy.net/data/\",\n  \"yearUrlTemplate\": \"https://planomy.net/tax-data/{year}.json\",\n  \"license\": \"Public-domain figures published by US federal agencies. Free to reuse; a link to https://planomy.net/data/ is appreciated.\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "7ecc6dd6-673e-4288-b15b-d7cb3396cb32",
+              "name": "Not modified — the ETag sent in If-None-Match still matches.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "tax-data",
+                    "index.json"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Modified",
+              "code": 304,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "14a68dff-55d8-4cad-b814-6756f1b25ebb",
+              "name": "Not found. The origin serves an HTML 404 page, not a JSON error document; clients must branch on the status code and Content-Type rather than parsing a body.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "tax-data",
+                    "index.json"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "text/html"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/html"
+                }
+              ],
+              "body": "string",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "f6d743c5-fbec-401c-ab46-8a9b2e3867ee",
+          "name": "Get the full tax and retirement dataset for a year",
+          "request": {
+            "name": "Get the full tax and retirement dataset for a year",
+            "description": {
+              "content": "Returns the complete dated dataset for one tax year: federal brackets and standard deduction, FICA rates and wage base, Social Security COLA and earnings test, Medicare premiums, deductibles and IRMAA tiers, contribution limits (employer plans, IRA, SIMPLE, HSA, HDHP, health FSA), Roth/traditional-IRA and Saver's Credit phase-outs, RMD applicable ages, and a set of state income-tax presets. Resolve `year` from getTaxDataIndex rather than hard-coding.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "tax-data",
+                "{{year}}.json"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "7d875cea-c66a-4cd4-8b80-03610295ef43",
+              "name": "The dataset for the requested year.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "tax-data",
+                    "{{year}}.json"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "Strong entity tag; send back as If-None-Match to revalidate.",
+                  "key": "ETag",
+                  "value": "string"
+                },
+                {
+                  "disabled": false,
+                  "description": "Observed: public, max-age=0, must-revalidate",
+                  "key": "Cache-Control",
+                  "value": "string"
+                },
+                {
+                  "disabled": false,
+                  "description": "Observed: * — the endpoint is browser-fetchable cross-origin.",
+                  "key": "Access-Control-Allow-Origin",
+                  "value": "string"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"summary\": \"Excerpt of the live 2026 dataset\",\n  \"externalValue\": \"../examples/planomy-tax-data-2026.json\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "171f2710-f9bd-4164-ab91-dafd0da7de11",
+              "name": "Not modified — the ETag sent in If-None-Match still matches.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "tax-data",
+                    "{{year}}.json"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Modified",
+              "code": 304,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "4568cbc9-d019-4809-a3d9-daa749304748",
+              "name": "No dataset published for that year. The origin serves an HTML 404 page, not a JSON error document.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "tax-data",
+                    "{{year}}.json"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "text/html"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/html"
+                }
+              ],
+              "body": "string",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://planomy.net",
+      "key": "baseUrl"
+    },
+    {
+      "disabled": false,
+      "description": {
+        "content": "(Required) A four-digit tax year listed in the `years` array of the index manifest.",
+        "type": "text/plain"
+      },
+      "type": "any",
+      "value": "<integer>",
+      "key": "year"
+    }
+  ],
+  "info": {
+    "_postman_id": "0b9c3925-d0a4-479a-b398-b7d3100a4d6c",
+    "name": "Planomy JSON Tax Data API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Planomy publishes the US federal tax, payroll, Social Security, Medicare/IRMAA, contribution-limit, phase-out and RMD figures that drive its local-first retirement planner as dated, source-attributed static JSON. There is no key, no sign-up and no quota: the dataset is two GET endpoints served as files from a Cloudflare CDN in front of planomy.net.\n\nEvery figure carries a `source` key that resolves into the document-level `sources` map, which in turn carries the publisher, the canonical IRS / SSA / CMS / Federal Register URL and the date Planomy last retrieved it. All money amounts are US dollars as bare numbers (no symbols, no separators) and all rates are decimal fractions, so `0.062` means 6.2%.\n\nPlanomy describes the contract as stable and additive: fields are added, never silently renamed or repurposed, and a breaking change would ship under a new `version` value.\n\nContact Support:\n Name: Planomy Support\n Email: support@planomy.net",
+      "type": "text/plain"
+    }
+  }
+}

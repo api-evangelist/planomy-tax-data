@@ -1,0 +1,48 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Planomy JSON Tax Data API",
+    "version": "v1"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "tax-data",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List available dataset years",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://planomy.net/tax-data/index.json"
+          },
+          "docs": "Returns the manifest of published dataset years, the latest year, the URL template for resolving a year to its file, the prose schema URL and the licence statement. Call this first so a client can discover new years without hard-coding one."
+        },
+        {
+          "info": {
+            "name": "Get the full tax and retirement dataset for a year",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://planomy.net/tax-data/:year.json",
+            "params": [
+              {
+                "name": "year",
+                "value": "2026",
+                "type": "path",
+                "description": "A four-digit tax year listed in the `years` array of the index manifest."
+              }
+            ]
+          },
+          "docs": "Returns the complete dated dataset for one tax year: federal brackets and standard deduction, FICA rates and wage base, Social Security COLA and earnings test, Medicare premiums, deductibles and IRMAA tiers, contribution limits (employer plans, IRA, SIMPLE, HSA, HDHP, health FSA), Roth/traditional-IRA and Saver's Credit phase-outs, RMD applicable ages, and a set of state income-tax presets. Resolve `year` from getTaxDataIndex rather than hard-coding."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}
