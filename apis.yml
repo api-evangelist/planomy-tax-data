@@ -14,7 +14,7 @@ url: https://raw.githubusercontent.com/api-evangelist/planomy-tax-data/refs/head
 image: https://planomy.net/og/og-home.png
 created: '2026-07-28'
 modified: '2026-08-09'
-specificationVersion: '0.21'
+specificationVersion: '0.23'
 tags:
   - tax
   - finance
