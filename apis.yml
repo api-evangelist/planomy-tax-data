@@ -16,6 +16,17 @@ created: '2026-07-28'
 modified: '2026-08-09'
 specificationVersion: '0.23'
 tags:
+  - Tax
+  - Finance
+  - Open Data
+  - Retirement
+  - Government
+  - Personal Finance
+  - IRS
+  - Social Security
+  - Medicare
+  - JSON
+tags_raw:
   - tax
   - finance
   - open-data
@@ -33,6 +44,8 @@ apis:
   humanURL: https://planomy.net/data/
   baseURL: https://planomy.net
   tags:
+  - Tax Data
+  tags_raw:
   - tax-data
   properties:
   - type: OpenAPI
