@@ -68,7 +68,6 @@ apis:
   name: Planomy Tax Data Tax Data API
   description: Dated, source-attributed US tax and retirement figures.
   humanURL: https://planomy.net/data/
-  baseURL: https://planomy.net
   tags:
   - Tax Data
   tags_raw:
