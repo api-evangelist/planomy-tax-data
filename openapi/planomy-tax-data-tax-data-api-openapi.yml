@@ -129,45 +129,6 @@ paths:
         content_type: application/json
 components:
   schemas:
-    IrmaaTier:
-      type: object
-      description: One income-related monthly adjustment tier, keyed off MAGI from two years prior.
-      properties:
-        magiMin:
-          type: number
-        partBMonthlySurcharge:
-          type: number
-        partBTotalMonthlyPremium:
-          type: number
-        partDMonthlySurcharge:
-          type: number
-    TaxDataIndex:
-      type: object
-      description: Manifest of the published dataset years.
-      required:
-      - latest
-      - years
-      properties:
-        latest:
-          type: integer
-          description: The most recent published tax year.
-        years:
-          type: array
-          description: Every tax year with a published dataset file.
-          items:
-            type: integer
-        schema:
-          type: string
-          format: uri
-          description: URL of the prose field-level schema.
-        documentation:
-          type: string
-          format: uri
-        yearUrlTemplate:
-          type: string
-          description: RFC 6570-style template resolving a year to its dataset URL.
-        license:
-          type: string
     EarningsTestLimit:
       type: object
       properties:
@@ -178,14 +139,26 @@ components:
         withholding:
           type: string
           description: Prose statement of the withholding ratio applied above the limit.
-    PhaseOutRange:
+    SourceReference:
       type: object
-      description: Modified-AGI range over which a benefit phases down to zero.
+      description: A citation for one upstream agency document.
+      required:
+      - title
+      - publisher
+      - url
       properties:
-        start:
-          type: number
-        end:
-          type: number
+        title:
+          type: string
+        publisher:
+          type: string
+          description: 'Observed values: Internal Revenue Service, Social Security Administration, Centers for Medicare & Medicaid Services.'
+        url:
+          type: string
+          format: uri
+        retrieved:
+          type: string
+          format: date
+          description: Date Planomy last checked the figure against this document.
     BracketSet:
       type: object
       properties:
@@ -213,39 +186,14 @@ components:
           description: Present when kind is flat.
         brackets:
           $ref: '#/components/schemas/BracketSet'
-    Bracket:
+    PhaseOutRange:
       type: object
-      description: One marginal rate band; `min` is the lower bound of taxable income it applies from.
-      required:
-      - min
-      - rate
+      description: Modified-AGI range over which a benefit phases down to zero.
       properties:
-        min:
+        start:
           type: number
-          description: Lower bound in US dollars.
-        rate:
+        end:
           type: number
-          description: Marginal rate as a decimal fraction.
-    SourceReference:
-      type: object
-      description: A citation for one upstream agency document.
-      required:
-      - title
-      - publisher
-      - url
-      properties:
-        title:
-          type: string
-        publisher:
-          type: string
-          description: 'Observed values: Internal Revenue Service, Social Security Administration, Centers for Medicare & Medicaid Services.'
-        url:
-          type: string
-          format: uri
-        retrieved:
-          type: string
-          format: date
-          description: Date Planomy last checked the figure against this document.
     TaxYearDataset:
       type: object
       description: The complete dataset for one tax year.
@@ -528,6 +476,58 @@ components:
           description: State income-tax presets keyed by USPS code, plus the pseudo-key `NONE`. Observed keys in the 2026 dataset - NONE, PA, IL, MA, VA, CA, NY, NJ, OR, MN.
           additionalProperties:
             $ref: '#/components/schemas/StateTaxPreset'
+    TaxDataIndex:
+      type: object
+      description: Manifest of the published dataset years.
+      required:
+      - latest
+      - years
+      properties:
+        latest:
+          type: integer
+          description: The most recent published tax year.
+        years:
+          type: array
+          description: Every tax year with a published dataset file.
+          items:
+            type: integer
+        schema:
+          type: string
+          format: uri
+          description: URL of the prose field-level schema.
+        documentation:
+          type: string
+          format: uri
+        yearUrlTemplate:
+          type: string
+          description: RFC 6570-style template resolving a year to its dataset URL.
+        license:
+          type: string
+    Bracket:
+      type: object
+      description: One marginal rate band; `min` is the lower bound of taxable income it applies from.
+      required:
+      - min
+      - rate
+      properties:
+        min:
+          type: number
+          description: Lower bound in US dollars.
+        rate:
+          type: number
+          description: Marginal rate as a decimal fraction.
+    IrmaaTier:
+      type: object
+      description: One income-related monthly adjustment tier, keyed off MAGI from two years prior.
+      properties:
+        magiMin:
+          type: number
+        partBMonthlySurcharge:
+          type: number
+        partBTotalMonthlyPremium:
+          type: number
+        partDMonthlySurcharge:
+          type: number
 externalDocs:
   description: Planomy 2026 retirement and tax data (prose schema at
   url: https://planomy.net/data/
