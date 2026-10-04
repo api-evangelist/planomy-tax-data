@@ -129,16 +129,19 @@ paths:
         content_type: application/json
 components:
   schemas:
-    EarningsTestLimit:
+    Bracket:
       type: object
+      description: One marginal rate band; `min` is the lower bound of taxable income it applies from.
+      required:
+      - min
+      - rate
       properties:
-        monthly:
+        min:
           type: number
-        annual:
+          description: Lower bound in US dollars.
+        rate:
           type: number
-        withholding:
-          type: string
-          description: Prose statement of the withholding ratio applied above the limit.
+          description: Marginal rate as a decimal fraction.
     SourceReference:
       type: object
       description: A citation for one upstream agency document.
@@ -159,17 +162,6 @@ components:
           type: string
           format: date
           description: Date Planomy last checked the figure against this document.
-    BracketSet:
-      type: object
-      properties:
-        single:
-          type: array
-          items:
-            $ref: '#/components/schemas/Bracket'
-        marriedJoint:
-          type: array
-          items:
-            $ref: '#/components/schemas/Bracket'
     StateTaxPreset:
       type: object
       description: A state income-tax preset. `kind` is `flat` (with a single `rate`) or `brackets` (with a `brackets` set). The key `NONE` models a state with no income tax.
@@ -186,6 +178,16 @@ components:
           description: Present when kind is flat.
         brackets:
           $ref: '#/components/schemas/BracketSet'
+    EarningsTestLimit:
+      type: object
+      properties:
+        monthly:
+          type: number
+        annual:
+          type: number
+        withholding:
+          type: string
+          description: Prose statement of the withholding ratio applied above the limit.
     PhaseOutRange:
       type: object
       description: Modified-AGI range over which a benefit phases down to zero.
@@ -194,6 +196,17 @@ components:
           type: number
         end:
           type: number
+    BracketSet:
+      type: object
+      properties:
+        single:
+          type: array
+          items:
+            $ref: '#/components/schemas/Bracket'
+        marriedJoint:
+          type: array
+          items:
+            $ref: '#/components/schemas/Bracket'
     TaxYearDataset:
       type: object
       description: The complete dataset for one tax year.
@@ -503,19 +516,6 @@ components:
           description: RFC 6570-style template resolving a year to its dataset URL.
         license:
           type: string
-    Bracket:
-      type: object
-      description: One marginal rate band; `min` is the lower bound of taxable income it applies from.
-      required:
-      - min
-      - rate
-      properties:
-        min:
-          type: number
-          description: Lower bound in US dollars.
-        rate:
-          type: number
-          description: Marginal rate as a decimal fraction.
     IrmaaTier:
       type: object
       description: One income-related monthly adjustment tier, keyed off MAGI from two years prior.
