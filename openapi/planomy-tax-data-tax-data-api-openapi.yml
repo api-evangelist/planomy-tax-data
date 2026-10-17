@@ -162,6 +162,64 @@ components:
           type: string
           format: date
           description: Date Planomy last checked the figure against this document.
+    TaxDataIndex:
+      type: object
+      description: Manifest of the published dataset years.
+      required:
+      - latest
+      - years
+      properties:
+        latest:
+          type: integer
+          description: The most recent published tax year.
+        years:
+          type: array
+          description: Every tax year with a published dataset file.
+          items:
+            type: integer
+        schema:
+          type: string
+          format: uri
+          description: URL of the prose field-level schema.
+        documentation:
+          type: string
+          format: uri
+        yearUrlTemplate:
+          type: string
+          description: RFC 6570-style template resolving a year to its dataset URL.
+        license:
+          type: string
+    IrmaaTier:
+      type: object
+      description: One income-related monthly adjustment tier, keyed off MAGI from two years prior.
+      properties:
+        magiMin:
+          type: number
+        partBMonthlySurcharge:
+          type: number
+        partBTotalMonthlyPremium:
+          type: number
+        partDMonthlySurcharge:
+          type: number
+    BracketSet:
+      type: object
+      properties:
+        single:
+          type: array
+          items:
+            $ref: '#/components/schemas/Bracket'
+        marriedJoint:
+          type: array
+          items:
+            $ref: '#/components/schemas/Bracket'
+    PhaseOutRange:
+      type: object
+      description: Modified-AGI range over which a benefit phases down to zero.
+      properties:
+        start:
+          type: number
+        end:
+          type: number
     StateTaxPreset:
       type: object
       description: A state income-tax preset. `kind` is `flat` (with a single `rate`) or `brackets` (with a `brackets` set). The key `NONE` models a state with no income tax.
@@ -178,35 +236,6 @@ components:
           description: Present when kind is flat.
         brackets:
           $ref: '#/components/schemas/BracketSet'
-    EarningsTestLimit:
-      type: object
-      properties:
-        monthly:
-          type: number
-        annual:
-          type: number
-        withholding:
-          type: string
-          description: Prose statement of the withholding ratio applied above the limit.
-    PhaseOutRange:
-      type: object
-      description: Modified-AGI range over which a benefit phases down to zero.
-      properties:
-        start:
-          type: number
-        end:
-          type: number
-    BracketSet:
-      type: object
-      properties:
-        single:
-          type: array
-          items:
-            $ref: '#/components/schemas/Bracket'
-        marriedJoint:
-          type: array
-          items:
-            $ref: '#/components/schemas/Bracket'
     TaxYearDataset:
       type: object
       description: The complete dataset for one tax year.
@@ -489,45 +518,16 @@ components:
           description: State income-tax presets keyed by USPS code, plus the pseudo-key `NONE`. Observed keys in the 2026 dataset - NONE, PA, IL, MA, VA, CA, NY, NJ, OR, MN.
           additionalProperties:
             $ref: '#/components/schemas/StateTaxPreset'
-    TaxDataIndex:
+    EarningsTestLimit:
       type: object
-      description: Manifest of the published dataset years.
-      required:
-      - latest
-      - years
       properties:
-        latest:
-          type: integer
-          description: The most recent published tax year.
-        years:
-          type: array
-          description: Every tax year with a published dataset file.
-          items:
-            type: integer
-        schema:
-          type: string
-          format: uri
-          description: URL of the prose field-level schema.
-        documentation:
-          type: string
-          format: uri
-        yearUrlTemplate:
-          type: string
-          description: RFC 6570-style template resolving a year to its dataset URL.
-        license:
-          type: string
-    IrmaaTier:
-      type: object
-      description: One income-related monthly adjustment tier, keyed off MAGI from two years prior.
-      properties:
-        magiMin:
+        monthly:
           type: number
-        partBMonthlySurcharge:
+        annual:
           type: number
-        partBTotalMonthlyPremium:
-          type: number
-        partDMonthlySurcharge:
-          type: number
+        withholding:
+          type: string
+          description: Prose statement of the withholding ratio applied above the limit.
 externalDocs:
   description: Planomy 2026 retirement and tax data (prose schema at
   url: https://planomy.net/data/
