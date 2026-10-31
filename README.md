@@ -1,4 +1,4 @@
-# Planomy Tax Data (planomy-tax-data)
+# Planomy Tax Data
 
 <!-- API-EVANGELIST-PROVENANCE:BEGIN -->
 > ### About this repository
@@ -66,77 +66,136 @@
 
 A free, keyless open-data JSON API publishing the 2026 US retirement and tax figures that drive the Planomy local-first personal-finance planner: federal income-tax brackets and the standard deduction, FICA rates and the Social Security wage base, the COLA and retirement earnings test, Medicare Part A/B/D premiums and deductibles with the full IRMAA tier tables, contribution limits for employer plans, IRA, SIMPLE, HSA, HDHP and health FSA, Roth and traditional-IRA phase-outs, Saver's Credit thresholds, RMD applicable ages, and a set of state income-tax presets. Two static JSON endpoints — a year manifest and one document per tax year — served from a Cloudflare CDN with no key, no sign-up and no quota. Its distinguishing feature is provenance: every section carries a source key that resolves to a named IRS, SSA, CMS or Federal Register document with the date it was last verified, so any single figure can be cited back to the government publication it came from.
 
-**APIs.json:** [https://planomy-tax-data.apievangelist.com/apis.yml](https://planomy-tax-data.apievangelist.com/apis.yml)
+**Areas:** Tax · Finance · Open Data · Retirement · Government · Personal Finance · IRS · Social Security · Medicare · JSON
 
-## Tags
+## Planomy Tax Data on APIs.io
 
-- tax
-- finance
-- open-data
-- retirement
-- government
-- personal-finance
-- irs
-- social-security
-- medicare
-- json
+Everything profiled for Planomy Tax Data is published on APIs.io rather than in this repository. Start at the provider page — **[apis.io/providers/planomy-tax-data/](https://apis.io/providers/planomy-tax-data/)** — or go straight to one of the APIs or properties below.
 
-## Timestamps
+### APIs (1)
 
-- **Created:** 2026-07-28
-- **Modified:** 2026-08-09
+- [Planomy Tax Data Tax Data API](https://apis.io/apis/planomy-tax-data/planomy-tax-data-tax-data-api/) — Dated, source-attributed US tax and retirement figures.
 
-## APIs
+### Published properties
 
-### Planomy Tax Data Tax Data API
+Each property below is a page on APIs.io carrying the machine-readable artifact and what it says.
 
-Dated, source-attributed US tax and retirement figures.
+#### MCP servers (1)
 
-- **Human URL:** [https://planomy.net/data/](https://planomy.net/data/)
-- **Base URL:** `https://planomy.net`
+Model Context Protocol servers that expose the API to agents.
 
-#### Tags
+- [planomy-tax-data](https://apis.io/servers/planomy-tax-data/planomy-tax-data/)
 
-- tax-data
+#### Agentic access (1)
 
-#### Properties
+Which operations an agent can call, which act, and which need a human in the loop.
 
-- [OpenAPI](openapi/planomy-tax-data-tax-data-api-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Postman Collection](collections/planomy-tax-data-tax-data-api.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/planomy-tax-data-tax-data-api.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-- [Documentation](https://planomy.net/data/)
-- [API Reference](https://planomy.net/data/#schema)
-- [L L Ms Txt](https://planomy.net/llms.txt)
-- [JSON Schema](json-schema/planomy-tax-data-tax-year-dataset.json) — [JSON Schema](https://json-schema.org/specification)
-- [JSON Schema](json-schema/planomy-tax-data-index.json) — [JSON Schema](https://json-schema.org/specification)
-- [Examples](examples/planomy-tax-data-2026.json)
-- [Examples](examples/planomy-tax-data-index.json)
+- [Planomy Tax Data Agentic Access](https://apis.io/agentic-access/planomy-tax-data/planomy-tax-data-agentic-access/)
 
-## Common Properties
+#### JSON Schema (2)
 
-- [Overlay](overlays/planomy-tax-data-overlay.yaml)
-- [Agentic Access](agentic-access/planomy-tax-data-agentic-access.yml)
-- [Domain Security](security/planomy-tax-data-domain-security.yml)
+The data models the API reads and writes.
+
+- [Planomy Tax Data Index](https://apis.io/schemas/planomy-tax-data/planomy-tax-data-index/)
+- [Planomy Tax Year Dataset](https://apis.io/schemas/planomy-tax-data/planomy-tax-data-tax-year-dataset/)
+
+#### Vocabulary (1)
+
+The provider's domain terms, defined.
+
+- [Planomy Tax Data Vocabulary](https://apis.io/vocabularies/planomy-tax-data/planomy-tax-data-vocabulary/)
+
+#### Examples (2)
+
+Example requests and responses.
+
+- [Planomy Tax Data 2026](https://apis.io/examples/planomy-tax-data/planomy-tax-data-2026/)
+- [Planomy Tax Data Index](https://apis.io/examples/planomy-tax-data/planomy-tax-data-index/)
+
+#### Collections (1)
+
+Postman and Open Collection request collections.
+
+- [Planomy JSON Tax Data API](https://apis.io/collections/planomy-tax-data/open-planomy-tax-data-tax-data-api/)
+
+#### Overlays (1)
+
+OpenAPI overlays, including conversational phrasing for each operation.
+
+- [Planomy Tax Data Overlay](https://apis.io/overlays/planomy-tax-data/planomy-tax-data-overlay/)
+
+#### Security (2)
+
+Authentication, trust centre, and vulnerability disclosure.
+
+- [Planomy Tax Data Authentication](https://apis.io/security/planomy-tax-data/planomy-tax-data-authentication/)
+- [Planomy Tax Data Domain Security](https://apis.io/security/planomy-tax-data/planomy-tax-data-domain-security/)
+
+#### Plans and pricing (1)
+
+Published plans, tiers and prices.
+
+- [Planomy Tax Data Plans Pricing](https://apis.io/plans/planomy-tax-data/planomy-tax-data-plans-pricing/)
+
+## Where to find this API
+
+Links to the company's own pages. This repository publishes no copy of their specifications — the canonical document is theirs and lives at the URLs below.
+
 - [Website](https://planomy.net/)
-- [Support](mailto:support@planomy.net)
 - [Pricing](https://planomy.net/pricing)
-- [Sign Up](https://planomy.net/app/)
-- [Terms of Service](https://planomy.net/legal/terms)
-- [Privacy Policy](https://planomy.net/legal/privacy)
-- [Authentication](authentication/planomy-tax-data-authentication.yml)
-- [Conventions](conventions/planomy-tax-data-conventions.yml)
-- [Error Catalog](errors/planomy-tax-data-problem-types.yml)
-- [Lifecycle](lifecycle/planomy-tax-data-lifecycle.yml)
-- [Conformance](conformance/planomy-tax-data-conformance.yml)
-- [Data Model](data-model/planomy-tax-data-data-model.yml)
-- [Vocabulary](vocabulary/planomy-tax-data-vocabulary.yml)
-- [Plans](plans/planomy-tax-data-plans-pricing.yml)
-- [Components](components/planomy-tax-data-components.yml)
-- [M C P Server](mcp/planomy-tax-data-mcp.yml)
-- [Agent Skill](skills/_index.yml)
+- [Sign up](https://planomy.net/app/)
+- [Terms of service](https://planomy.net/legal/terms)
+- [Privacy policy](https://planomy.net/legal/privacy)
 
-## Maintainers
+## API Evangelist rating
 
-**FN:** Planomy
-**Email:** support@planomy.net
-**URL:** https://planomy.net/data/
+**Kin Score 36.1** — thin · rubric 0.24.0 · scored 2026-10-17
+
+| Facet | Score |
+|---|---|
+| Discoverability | 64.3 |
+| Contract quality | 18.7 |
+| Contract governance | 8.3 |
+| Operational transparency | 0.0 |
+| Developer ergonomics | 35.1 |
+| Access clarity | 76.3 |
+
+**Agent readiness 30.2** — agent-ready
+
+| Agent-readiness dimension | Result |
+|---|---|
+| Spec Presence | yes |
+| Agentic Access | derived (partial credit) |
+| Reversibility Documented | na |
+| MCP Server | — |
+| Auth Clarity | bearer (partial credit) |
+| Idempotency | na |
+| Error Semantics | documented (partial credit) |
+| OpenAPI Examples | verified |
+| Rate Limit Signal | — |
+| Event Surface Described | — |
+| Agent Skills | derived (partial credit) |
+| Well Known Catalog | — |
+| Consent Identity | — |
+| Agent Card | — |
+| Dry Run Mode | na |
+| Delegated Identity | — |
+| Protected Resource Metadata | — |
+| Dynamic Client Registration | — |
+| Agentic Commerce | — |
+
+**Regulatory alignment 24.5** — Government & Public Sector
+
+The rubric is published at [github.com/api-evangelist/kin-score](https://github.com/api-evangelist/kin-score). The per-check breakdown behind these numbers — which checks were earned, partial or missed — along with score history and how this provider compares to its peers, is available at [apis.io/providers/planomy-tax-data/](https://apis.io/providers/planomy-tax-data/).
+
+## How this profile is made
+
+API Evangelist profiles a company's public API surface the way a developer would find it: the website, developer portal and documentation, the specifications it publishes, its public repositories, and its pricing, status and changelog pages. From that it derives the properties above — contracts split per API, workflows, schemas, collections, governance rules, plans and rate limits — and scores them against the published [Kin Score rubric](https://github.com/api-evangelist/kin-score).
+
+The artifacts are published on [APIs.io](https://apis.io), not in this repository. This repository is the public record for Planomy Tax Data: the place to say something is wrong, missing or out of date, and to ask for a re-score or a removal.
+
+## Open an issue
+
+- **Something about this listing** — a wrong description, a missing API, a stale artifact or a question about the rating: [open an issue on this repository](https://github.com/api-evangelist/planomy-tax-data/issues/new).
+- **A new API, or one that is not in the catalog yet** — [submit it on APIs.io](https://apis.io/add/).
+- **Anything else** — [the APIs.io inbox](https://github.com/api-search/inbox/issues/new) or [info@apievangelist.com](mailto:info@apievangelist.com).
