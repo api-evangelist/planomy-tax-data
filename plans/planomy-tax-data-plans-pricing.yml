@@ -162,7 +162,7 @@ terms:
   refunds: No partial refunds for unused time — see https://planomy.net/legal/terms.
   trial: None — the Free plan is the full planner rather than a time-limited trial.
 x-canonical:
-  generated: '2026-11-02'
+  generated: '2026-11-06'
   vocabulary: engine/economics/plans-canonical.yml
   models:
   - free
